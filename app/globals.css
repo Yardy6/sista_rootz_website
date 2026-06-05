@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --background: #070806;
+  --foreground: #f8f1df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 120px;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+body.age-locked {
+  overflow: hidden;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f4c84a;
+  outline-offset: 4px;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+}
+
+.brand-gradient {
+  background: linear-gradient(90deg, #12864a 0%, #f4d23b 47%, #d94638 100%);
+}
+
+.hero-field {
+  background:
+    radial-gradient(circle at 88% 20%, rgba(217, 70, 56, 0.28), transparent 24rem),
+    radial-gradient(circle at 12% 62%, rgba(18, 134, 74, 0.28), transparent 22rem),
+    linear-gradient(120deg, rgba(5, 6, 5, 0.92), rgba(8, 23, 14, 0.88)),
+    url("/images/brand-book-cover.png") center / cover;
+}
+
+.paper-texture {
+  background:
+    radial-gradient(circle at top right, rgba(18, 134, 74, 0.1), transparent 20rem),
+    radial-gradient(circle at bottom left, rgba(244, 200, 74, 0.14), transparent 18rem),
+    #f7f0df;
+}
+
+.dark-panel {
+  background:
+    linear-gradient(145deg, rgba(7, 8, 6, 0.96), rgba(8, 23, 14, 0.96)),
+    radial-gradient(circle at top right, rgba(244, 200, 74, 0.12), transparent 16rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  section[id] {
+    scroll-margin-top: 150px;
+  }
+}
