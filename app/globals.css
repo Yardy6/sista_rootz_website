@@ -51,9 +51,17 @@ input:focus-visible {
 
 .hero-field {
   background:
-    radial-gradient(circle at 88% 20%, rgba(217, 70, 56, 0.28), transparent 24rem),
-    radial-gradient(circle at 12% 62%, rgba(18, 134, 74, 0.28), transparent 22rem),
-    linear-gradient(120deg, rgba(5, 6, 5, 0.92), rgba(8, 23, 14, 0.88)),
+    radial-gradient(circle at 80% 12%, rgba(217, 70, 56, 0.24), transparent 22rem),
+    radial-gradient(circle at 12% 70%, rgba(18, 134, 74, 0.22), transparent 22rem),
+    linear-gradient(120deg, rgba(5, 6, 5, 0.94), rgba(8, 23, 14, 0.9)),
+    url("/images/brand-book-cover.png") center / cover;
+}
+
+.root-hero {
+  background:
+    radial-gradient(circle at 78% 20%, rgba(217, 70, 56, 0.18), transparent 22rem),
+    radial-gradient(circle at 12% 58%, rgba(18, 134, 74, 0.22), transparent 18rem),
+    linear-gradient(120deg, rgba(7, 8, 6, 0.96), rgba(10, 28, 17, 0.94)),
     url("/images/brand-book-cover.png") center / cover;
 }
 
@@ -68,6 +76,55 @@ input:focus-visible {
   background:
     linear-gradient(145deg, rgba(7, 8, 6, 0.96), rgba(8, 23, 14, 0.96)),
     radial-gradient(circle at top right, rgba(244, 200, 74, 0.12), transparent 16rem);
+}
+
+.root-corner {
+  position: absolute;
+  width: 92px;
+  height: 42px;
+  border-right: 1px solid rgba(244, 200, 74, 0.5);
+  border-bottom: 1px solid rgba(18, 134, 74, 0.5);
+  border-bottom-right-radius: 100%;
+  pointer-events: none;
+}
+
+.root-corner::before,
+.root-corner::after {
+  content: "";
+  position: absolute;
+  background: rgba(244, 200, 74, 0.46);
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+.root-corner::before {
+  right: 28px;
+  bottom: 6px;
+  width: 38px;
+  height: 1px;
+  transform: rotate(-24deg);
+}
+
+.root-corner::after {
+  right: 12px;
+  bottom: 16px;
+  width: 28px;
+  height: 1px;
+  transform: rotate(34deg);
+}
+
+.organic-divider {
+  position: relative;
+  overflow: hidden;
+}
+
+.organic-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #12864a, #f4d23b 48%, #d94638);
 }
 
 @media (prefers-reduced-motion: reduce) {

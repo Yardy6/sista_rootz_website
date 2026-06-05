@@ -1,6 +1,6 @@
 # Sista Rootz Website
 
-Fresh Next.js/Tailwind coming-soon site for Sista Rootz / M.Q LLC.
+Fresh Next.js/Tailwind coming-soon site for Sista.Rootz / M.Q LLC.
 
 ## Source References
 
@@ -17,8 +17,16 @@ npm run dev
 
 Visit `http://localhost:3000`.
 
+## Routes
+
+- `/`
+- `/about`
+- `/first-time-visitors`
+- `/whats-coming`
+- `/contact`
+
 ## Scope
 
 This is an announcement and under-construction website for adults 21+ only. It
 does not include ecommerce, carts, checkout, live inventory, payments, online
-ordering, or a connected form backend.
+ordering, POS, or a connected form backend.

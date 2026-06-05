@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import { AgeGate } from "./components/AgeGate";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -27,7 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${body.variable}`}>{children}</body>
+      <body className={`${display.variable} ${body.variable}`}>
+        <AgeGate />
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
