@@ -1,0 +1,829 @@
+:root {
+  --black: #050705;
+  --ink: #15120e;
+  --deep: #07170f;
+  --green: #0c6b37;
+  --green-soft: #e8f0e8;
+  --gold: #e4af3c;
+  --gold-soft: #f6e4b1;
+  --red: #b7352d;
+  --paper: #fbf7ed;
+  --warm: #efe6d2;
+  --muted: #675f51;
+  --line: rgba(21, 18, 14, 0.16);
+  --line-light: rgba(255, 255, 255, 0.18);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  --serif: "DM Serif Display", Georgia, serif;
+  --sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+}
+
+body.gate-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.site-header {
+  position: fixed;
+  z-index: 30;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  min-height: 78px;
+  padding: 14px clamp(18px, 5vw, 72px);
+  color: #fffaf0;
+  background: rgba(5, 7, 5, 0.74);
+  border-bottom: 1px solid var(--line-light);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.brand-logo {
+  width: 112px;
+  height: 48px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(228, 175, 60, 0.42);
+  border-radius: 6px;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 34px);
+  color: rgba(255, 250, 240, 0.86);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.site-header nav a {
+  white-space: nowrap;
+}
+
+.site-header nav a:hover {
+  color: var(--gold);
+}
+
+.header-cta,
+.button,
+.age-form button,
+.signup-form button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.header-cta {
+  flex: 0 0 auto;
+  padding: 0 18px;
+  color: var(--deep);
+  background: var(--gold);
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 88vh;
+  align-items: center;
+  overflow: hidden;
+  padding: 128px clamp(20px, 7vw, 92px) 96px;
+  color: #fffaf0;
+  isolation: isolate;
+}
+
+.hero-image,
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image {
+  z-index: -3;
+  background: url("assets/sista-rootz-hero.png") center / cover no-repeat;
+  transform: scale(1.02);
+}
+
+.hero-overlay {
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 5, 0.96) 0%, rgba(5, 7, 5, 0.8) 38%, rgba(5, 7, 5, 0.16) 100%),
+    linear-gradient(0deg, rgba(5, 7, 5, 0.86) 0%, rgba(5, 7, 5, 0.08) 46%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: clamp(18px, 5vw, 70px);
+  bottom: 30px;
+  width: min(42vw, 520px);
+  height: 5px;
+  background: linear-gradient(90deg, var(--green), var(--gold) 48%, var(--red));
+}
+
+.hero-content {
+  width: min(800px, 100%);
+}
+
+.hero-logo {
+  display: block;
+  width: min(420px, 74vw);
+  height: min(250px, 46vw);
+  margin-bottom: 22px;
+  object-fit: contain;
+  background: rgba(5, 7, 5, 0.74);
+  border: 1px solid rgba(228, 175, 60, 0.26);
+  border-radius: 8px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.34);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h1 {
+  color: var(--gold);
+  font-size: clamp(58px, 8vw, 106px);
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(38px, 5.6vw, 76px);
+  line-height: 0.98;
+}
+
+h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+p {
+  line-height: 1.7;
+}
+
+.hero-copy {
+  max-width: 620px;
+  margin: 24px 0 0;
+  color: rgba(255, 250, 240, 0.86);
+  font-size: clamp(18px, 2.2vw, 23px);
+}
+
+.launch-card {
+  display: inline-grid;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 18px 22px;
+  color: var(--gold);
+  background: rgba(5, 7, 5, 0.66);
+  border: 1px solid rgba(228, 175, 60, 0.42);
+  border-radius: 8px;
+}
+
+.launch-card span {
+  color: rgba(255, 250, 240, 0.68);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.launch-card strong {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.button {
+  min-width: 168px;
+  padding: 0 20px;
+}
+
+.button.primary {
+  color: var(--deep);
+  background: var(--gold);
+}
+
+.button.secondary {
+  color: #fffaf0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+}
+
+.info-rail {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: -46px clamp(20px, 7vw, 92px) 0;
+  color: #fffaf0;
+  background: rgba(228, 175, 60, 0.26);
+  border: 1px solid rgba(228, 175, 60, 0.3);
+  box-shadow: var(--shadow);
+}
+
+.info-rail article {
+  min-height: 116px;
+  padding: 24px;
+  background: rgba(7, 23, 15, 0.96);
+}
+
+.info-rail span,
+.section-label {
+  display: block;
+  margin: 0 0 12px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.info-rail span {
+  color: var(--gold);
+}
+
+.info-rail a,
+.info-rail strong {
+  display: block;
+  color: rgba(255, 250, 240, 0.9);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.section {
+  padding: clamp(68px, 9vw, 124px) clamp(20px, 7vw, 92px);
+}
+
+.about-section {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(320px, 1fr);
+  gap: clamp(34px, 7vw, 92px);
+  align-items: center;
+  background:
+    radial-gradient(circle at right 20%, rgba(12, 107, 55, 0.08), transparent 28%),
+    var(--paper);
+}
+
+.about-media {
+  position: relative;
+}
+
+.about-media::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: 8%;
+  bottom: -16px;
+  height: 8px;
+  background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+}
+
+.about-media img {
+  display: block;
+  width: min(430px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.section-copy {
+  max-width: 760px;
+}
+
+.section-copy p,
+.section-heading p,
+.contact-card > p,
+.updates-card > p {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.coming-section {
+  color: #fffaf0;
+  background:
+    radial-gradient(circle at top right, rgba(183, 53, 45, 0.18), transparent 28%),
+    linear-gradient(180deg, #050705 0%, #07170f 100%);
+}
+
+.coming-section .section-heading {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.coming-section .section-label {
+  color: var(--gold);
+}
+
+.coming-section .section-heading p {
+  color: rgba(255, 250, 240, 0.72);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 46px;
+  border: 1px solid rgba(228, 175, 60, 0.22);
+}
+
+.category-grid article {
+  min-height: 230px;
+  padding: 26px 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.category-icon {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: var(--gold);
+  border: 1px solid rgba(228, 175, 60, 0.45);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-size: 20px;
+}
+
+.category-grid p {
+  margin: 0;
+  color: rgba(255, 250, 240, 0.68);
+  font-size: 14px;
+}
+
+.notice {
+  max-width: 780px;
+  margin: 36px auto 0;
+  padding: 18px 22px;
+  color: rgba(255, 250, 240, 0.82);
+  text-align: center;
+  border: 1px solid rgba(228, 175, 60, 0.56);
+  border-radius: 8px;
+}
+
+.first-time-section {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(280px, 0.8fr);
+  gap: clamp(34px, 7vw, 88px);
+  align-items: center;
+  background: var(--paper);
+}
+
+.visitor-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.visitor-steps article {
+  min-height: 150px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.visitor-steps span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.visitor-steps p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.visitor-panel {
+  padding: clamp(28px, 5vw, 48px);
+  color: #fffaf0;
+  background:
+    linear-gradient(135deg, rgba(5, 7, 5, 0.88), rgba(7, 23, 15, 0.9)),
+    url("assets/sista-rootz-hero.png") 72% center / cover;
+  border: 1px solid rgba(228, 175, 60, 0.28);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.visitor-panel strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.visitor-panel p {
+  color: rgba(255, 250, 240, 0.76);
+}
+
+.action-section {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.86fr) minmax(320px, 1fr);
+  gap: 20px;
+  background: var(--warm);
+}
+
+.updates-card,
+.contact-card {
+  min-height: 520px;
+  padding: clamp(28px, 5vw, 48px);
+  color: #fffaf0;
+  background: linear-gradient(145deg, #050705, #07170f);
+  border: 1px solid rgba(228, 175, 60, 0.22);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.updates-card .section-label,
+.contact-card .section-label {
+  color: var(--gold);
+}
+
+.updates-card > p,
+.contact-card > p {
+  color: rgba(255, 250, 240, 0.72);
+}
+
+.signup-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.signup-form label {
+  color: rgba(255, 250, 240, 0.88);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.signup-form label span {
+  color: rgba(255, 250, 240, 0.58);
+  font-weight: 700;
+}
+
+.signup-form input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 15px;
+  color: #fffaf0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+.signup-form input::placeholder {
+  color: rgba(255, 250, 240, 0.44);
+}
+
+.signup-form button {
+  margin-top: 8px;
+  color: var(--deep);
+  background: var(--gold);
+}
+
+.form-note {
+  min-height: 24px;
+  margin: 2px 0 0;
+  color: rgba(255, 250, 240, 0.62);
+  font-size: 13px;
+}
+
+.contact-list {
+  display: grid;
+  gap: 16px;
+  margin: 28px 0 0;
+}
+
+.contact-list div {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.contact-list dt {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.contact-list dd {
+  margin: 8px 0 0;
+  color: rgba(255, 250, 240, 0.84);
+  line-height: 1.6;
+}
+
+.contact-list a {
+  color: #fffaf0;
+  font-weight: 800;
+}
+
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.42fr) minmax(280px, 1fr);
+  gap: 36px;
+  padding: 38px clamp(20px, 7vw, 92px);
+  color: rgba(255, 250, 240, 0.78);
+  background: var(--black);
+  border-top: 5px solid;
+  border-image: linear-gradient(90deg, var(--green), var(--gold), var(--red)) 1;
+}
+
+.site-footer img {
+  width: 156px;
+  border-radius: 6px;
+}
+
+.site-footer p {
+  margin: 10px 0 0;
+  color: rgba(255, 250, 240, 0.66);
+  font-size: 14px;
+}
+
+.age-gate {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: #fffaf0;
+  background:
+    linear-gradient(120deg, rgba(5, 7, 5, 0.94), rgba(7, 23, 15, 0.9)),
+    url("assets/sista-rootz-hero.png") center / cover;
+}
+
+.age-gate.is-hidden {
+  display: none;
+}
+
+.age-panel {
+  width: min(460px, 100%);
+  padding: clamp(28px, 5vw, 44px);
+  background: rgba(5, 7, 5, 0.88);
+  border: 1px solid rgba(228, 175, 60, 0.44);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.age-logo {
+  display: block;
+  width: min(270px, 75vw);
+  margin: 0 auto 24px;
+  border-radius: 6px;
+}
+
+.age-kicker {
+  margin: 0 0 12px;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 34px;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.age-panel h1 {
+  color: #fffaf0;
+  font-size: clamp(34px, 8vw, 54px);
+  line-height: 0.98;
+  text-align: center;
+  text-transform: none;
+}
+
+.age-panel p {
+  color: rgba(255, 250, 240, 0.76);
+  text-align: center;
+}
+
+.age-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.age-form label {
+  color: rgba(255, 250, 240, 0.8);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.age-form input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 15px;
+  color: #fffaf0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 6px;
+}
+
+.age-form button {
+  color: var(--deep);
+  background: var(--gold);
+}
+
+.age-error {
+  min-height: 22px;
+  margin: 0;
+  color: #ffd5d1;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 1080px) {
+  .category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .info-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .site-header {
+    position: absolute;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .site-header nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 0 4px;
+  }
+
+  .hero {
+    min-height: 820px;
+    padding-top: 168px;
+  }
+
+  .about-section,
+  .first-time-section,
+  .action-section,
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .visitor-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header {
+    gap: 12px;
+    padding: 12px 18px;
+  }
+
+  .brand-logo {
+    width: 88px;
+    height: 40px;
+  }
+
+  .site-header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    overflow: visible;
+    font-size: 12px;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  .hero {
+    min-height: 760px;
+    padding-top: 148px;
+    padding-inline: 18px;
+  }
+
+  .hero-logo {
+    width: min(320px, 92vw);
+    height: 150px;
+  }
+
+  h1 {
+    font-size: clamp(52px, 17vw, 66px);
+  }
+
+  .hero-copy {
+    font-size: 17px;
+  }
+
+  h2 {
+    font-size: clamp(36px, 12vw, 52px);
+  }
+
+  .hero-actions,
+  .button {
+    width: 100%;
+  }
+
+  .info-rail {
+    grid-template-columns: 1fr;
+    margin: 0;
+    border-inline: 0;
+  }
+
+  .section {
+    padding-inline: 18px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-grid article {
+    min-height: auto;
+  }
+
+  .updates-card,
+  .contact-card {
+    min-height: auto;
+  }
+}
