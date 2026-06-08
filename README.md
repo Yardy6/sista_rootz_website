@@ -12,10 +12,17 @@ Fresh Next.js/Tailwind coming-soon site for Sista.Rootz / M.Q LLC.
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
 Visit `http://localhost:3000`.
+
+For a production-style local run, build first and then start the compiled site:
+
+```bash
+npm run build
+npm run start:production
+```
 
 ## Routes
 
