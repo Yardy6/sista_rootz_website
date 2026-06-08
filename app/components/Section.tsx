@@ -1,13 +1,15 @@
 type SectionProps = {
   children: React.ReactNode;
   className?: string;
-  tone?: "paper" | "dark" | "warm";
+  tone?: "paper" | "dark" | "warm" | "green" | "gold";
 };
 
 const tones = {
   paper: "paper-texture text-[#15120d]",
-  dark: "bg-[#070806] text-[#fff8e8]",
-  warm: "bg-[#e8dcc5] text-[#15120d]"
+  dark: "urban-dark-surface text-[#fff8e8]",
+  warm: "warm-street-surface text-[#15120d]",
+  green: "greenhouse-surface text-[#fff8e8]",
+  gold: "gold-surface text-[#15120d]"
 };
 
 export function Section({ children, className = "", tone = "paper" }: SectionProps) {
@@ -20,7 +22,7 @@ export function Section({ children, className = "", tone = "paper" }: SectionPro
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-[#12864a]">
+    <p className="mb-4 text-xs font-black uppercase text-[#12864a]">
       {children}
     </p>
   );

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 
 const storageKey = "sistaRootzAgeVerified";
+const ageVerifiedEvent = "sista-rootz-age-verified";
 
 function getAge(dateValue: string) {
   const birthDate = new Date(`${dateValue}T00:00:00`);
@@ -27,9 +28,10 @@ function getAge(dateValue: string) {
 export function AgeGate() {
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState("");
+  const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
-    const verified = window.sessionStorage.getItem(storageKey) === "true";
+    const verified = window.localStorage.getItem(storageKey) === "true";
 
     if (!verified) {
       setIsVisible(true);
@@ -57,9 +59,10 @@ export function AgeGate() {
       return;
     }
 
-    window.sessionStorage.setItem(storageKey, "true");
+    window.localStorage.setItem(storageKey, "true");
     document.body.classList.remove("age-locked");
     setIsVisible(false);
+    window.dispatchEvent(new Event(ageVerifiedEvent));
   }
 
   if (!isVisible) {
@@ -70,15 +73,15 @@ export function AgeGate() {
     <div
       aria-labelledby="age-gate-title"
       aria-modal="true"
-      className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/92 p-5 backdrop-blur-md"
+      className="fixed inset-0 z-[70] grid place-items-center overflow-y-auto bg-[#050704]/95 p-5 backdrop-blur-md"
       role="dialog"
     >
-      <section className="dark-panel relative w-full max-w-[460px] overflow-hidden rounded-lg border border-[#f4c84a]/45 p-6 text-center shadow-2xl sm:p-9">
-        <div className="root-corner left-5 top-5 rotate-180" aria-hidden="true" />
-        <div className="root-corner bottom-5 right-5" aria-hidden="true" />
+      <section className="age-panel relative w-full max-w-[480px] overflow-hidden rounded-lg border border-[#f4c84a]/35 p-6 text-center shadow-2xl sm:p-9">
+        <div className="vine-frame left-5 top-5 rotate-180" aria-hidden="true" />
+        <div className="vine-frame bottom-5 right-5" aria-hidden="true" />
         <Image
           alt="Sista Rootz Spiritual and Wellness Center logo"
-          className="mx-auto mb-7 h-auto max-h-56 w-full max-w-72 rounded-md border border-white/10 object-contain"
+          className="mx-auto mb-7 h-auto max-h-56 w-full max-w-72 object-contain"
           height={1080}
           priority
           src="/images/sista-rootz-logo.jpg"
@@ -93,23 +96,24 @@ export function AgeGate() {
         >
           Verify your age to enter.
         </h1>
-        <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-[#fff8e8]/72">
-          Sista Rootz is an adults-only announcement website. Please confirm
-          your birthday before continuing.
+        <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-[#fff8e8]/70">
+          Sista Rootz is an adults-only coming-soon website. Please confirm your
+          birthday before continuing.
         </p>
         <p className="mt-3 text-sm font-black text-[#f4c84a]">
           You must be 21 or older to enter this site.
         </p>
         <form className="mt-7 grid gap-3 text-left" onSubmit={handleSubmit}>
           <label
-            className="text-xs font-black uppercase tracking-wide text-[#f4c84a]"
+            className="text-xs font-black uppercase text-[#f4c84a]"
             htmlFor="birthdate"
           >
             Date of birth
           </label>
           <input
-            className="min-h-12 rounded-md border border-white/20 bg-white/8 px-4 text-[#fff8e8]"
+            className="min-h-12 rounded-md border border-white/20 bg-white/[0.08] px-4 text-[#fff8e8]"
             id="birthdate"
+            max={today}
             name="birthdate"
             required
             type="date"

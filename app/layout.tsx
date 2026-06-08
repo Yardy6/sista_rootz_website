@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import { AgeGate } from "./components/AgeGate";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
+import { IntroLogoAnimation } from "./components/IntroLogoAnimation";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${display.variable} ${body.variable}`}>
         <AgeGate />
+        <IntroLogoAnimation />
         <Header />
         {children}
         <Footer />

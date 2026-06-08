@@ -1,6 +1,6 @@
 # Sista Rootz Website
 
-Fresh Next.js/Tailwind coming-soon site for Sista.Rootz / M.Q LLC.
+Fresh Next.js/Tailwind coming-soon site for Sista Rootz / M.Q LLC.
 
 ## Source References
 
@@ -28,8 +28,8 @@ npm run start:production
 
 - `/`
 - `/about`
-- `/first-time-visitors`
-- `/whats-coming`
+- `/first-time-buyers`
+- `/menu-shop`
 - `/contact`
 
 ## Scope

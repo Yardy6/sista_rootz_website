@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ProductPreviewCard } from "./components/ProductPreviewCard";
+import { DesignOptionPreview } from "./components/DesignOptionPreview";
+import { ProductCategoryCard } from "./components/ProductCategoryCard";
 import { RootLine } from "./components/RootLine";
 import { Section, SectionLabel } from "./components/Section";
 import { productCategories, site } from "./lib/site-content";
@@ -22,93 +23,105 @@ function ArrowIcon() {
 export default function Home() {
   return (
     <main>
-      <section className="hero-field organic-divider relative isolate min-h-screen overflow-hidden px-5 pb-16 pt-40 text-[#fff8e8] lg:px-8 lg:pb-24 lg:pt-36">
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(95deg,rgba(7,8,6,0.98)_0%,rgba(7,8,6,0.9)_47%,rgba(7,8,6,0.54)_100%)]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:min-h-[760px] lg:grid-cols-[1fr_0.78fr]">
-          <div>
-            <Image
-              alt="Sista Rootz Spiritual and Wellness Center logo"
-              className="mb-8 h-auto w-full max-w-[520px] rounded-lg border border-[#d8b84f]/30 bg-black/70 object-contain p-4 shadow-2xl"
-              height={1080}
-              priority
-              src="/images/sista-rootz-logo.jpg"
-              width={1080}
-            />
-            <h1 className="font-display max-w-4xl text-[clamp(4.2rem,11vw,9rem)] font-bold uppercase leading-[0.82] text-[#f4c84a]">
-              Coming Soon
+      <section className="home-hero relative overflow-hidden px-5 pb-16 pt-36 text-[#fff8e8] lg:px-8 lg:pb-20 lg:pt-40">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
+          <div className="relative z-10">
+            <h1 className="font-display max-w-5xl text-6xl font-bold leading-[0.86] sm:text-7xl lg:text-8xl">
+              Sista Rootz
             </h1>
-            <p className="mt-7 max-w-2xl text-xl font-semibold leading-9 text-[#fff8e8]/86">
-              Sista.Rootz is preparing a spiritual and wellness-centered
-              cannabis dispensary rooted in Rastafarian inspiration, cultural
-              education, community, and premium adult-use service.
+            <div className="mt-6 grid gap-3 text-xl font-black uppercase text-[#f4c84a] sm:text-2xl">
+              <p>Dispensary Coming Soon</p>
+              <p>Under Construction</p>
+            </div>
+            <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-[#fff8e8]/80">
+              Expected Opening: {site.opening}. Read About What Is To Come as
+              Sista Rootz prepares a modern, urban, Rastafarian-inspired
+              cannabis dispensary rooted in wellness, farming, education, and
+              community.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 className="inline-flex min-h-12 items-center gap-2 rounded-md bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffdc60]"
                 href="/about"
               >
-                Learn the Story <ArrowIcon />
+                About Sista Rootz <ArrowIcon />
               </Link>
               <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/28 bg-white/8 px-5 text-sm font-black uppercase text-[#fff8e8] transition hover:border-[#f4c84a]/60"
-                href="/contact"
+                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 bg-white/[0.08] px-5 text-sm font-black uppercase text-[#fff8e8] transition hover:border-[#f4c84a]/70"
+                href="/first-time-buyers"
               >
-                Contact / Vendor Inquiry
+                First Time Buyers
+              </Link>
+              <Link
+                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 bg-white/[0.08] px-5 text-sm font-black uppercase text-[#fff8e8] transition hover:border-[#f4c84a]/70"
+                href="/menu-shop"
+              >
+                Menu / Shop Preview
               </Link>
             </div>
           </div>
 
-          <aside className="dark-panel relative overflow-hidden rounded-lg border border-[#d8b84f]/35 p-7 shadow-2xl lg:ml-auto lg:max-w-md">
-            <div className="root-corner right-5 top-5" />
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f4c84a]">
+          <aside className="hero-status-panel relative z-10 overflow-hidden rounded-lg border border-[#f4c84a]/30 p-7 shadow-2xl">
+            <div className="vine-frame right-5 top-5" aria-hidden="true" />
+            <Image
+              alt="Sista Rootz Spiritual and Wellness Center logo"
+              className="mb-7 h-auto w-full max-w-[340px] object-contain"
+              height={1080}
+              priority
+              src="/images/sista-rootz-logo.jpg"
+              width={1080}
+            />
+            <p className="text-sm font-black uppercase text-[#f4c84a]">
               Expected Opening
             </p>
             <p className="font-display mt-4 text-6xl font-bold leading-none text-[#fff8e8]">
               {site.opening}
             </p>
-            <RootLine className="my-6 h-8 w-full text-[#12864a]/80" />
-            <dl className="grid gap-5 text-sm">
+            <RootLine className="my-6 h-8 w-full text-[#148b50]/85" />
+            <div className="grid gap-5 text-sm">
               <div>
-                <dt className="font-black uppercase text-[#f4c84a]">Phone</dt>
-                <dd className="mt-1 text-lg font-bold">
+                <p className="font-black uppercase text-[#f4c84a]">Website Goals</p>
+                <p className="mt-2 leading-7 text-[#fff8e8]/75">
+                  Announce the coming dispensary, share the cultural mission,
+                  prepare first time buyers, and preview expected categories.
+                </p>
+              </div>
+              <div>
+                <p className="font-black uppercase text-[#f4c84a]">Availability</p>
+                <p className="mt-2 leading-7 text-[#fff8e8]/75">
+                  Preview only. No products are available to purchase online
+                  today.
+                </p>
+              </div>
+              <div>
+                <p className="font-black uppercase text-[#f4c84a]">Contact</p>
+                <p className="mt-2 text-[#fff8e8]/80">
                   <a href={site.phoneHref}>{site.phoneDisplay}</a>
-                </dd>
+                </p>
               </div>
-              <div>
-                <dt className="font-black uppercase text-[#f4c84a]">Location</dt>
-                <dd className="mt-1 text-[#fff8e8]/75">Location coming soon</dd>
-              </div>
-              <div>
-                <dt className="font-black uppercase text-[#f4c84a]">
-                  Website Contact
-                </dt>
-                <dd className="mt-1 text-[#fff8e8]/75">
-                  {site.contactName}, <a href={site.contactPhoneHref}>{site.contactPhoneDisplay}</a>
-                </dd>
-              </div>
-            </dl>
+            </div>
           </aside>
         </div>
       </section>
 
-      <Section>
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1fr] lg:items-center">
+      <Section tone="gold">
+        <div className="grid gap-10 lg:grid-cols-[0.88fr_1fr] lg:items-center">
           <div>
             <SectionLabel>Rooted In Culture</SectionLabel>
             <h2 className="font-display max-w-3xl text-5xl font-bold leading-[0.95] sm:text-6xl">
-              A coming-soon sanctuary for wellness, education, and community.
+              A brighter premium dispensary experience is taking root.
             </h2>
           </div>
-          <div className="grid gap-5 text-lg leading-8 text-[#4f493e]">
+          <div className="grid gap-5 text-lg leading-8 text-[#4d4332]">
             <p>
-              Created in tribute to Sista Ruth, Sista.Rootz is being shaped as a
-              modern, urban, classy dispensary experience with a Rastafarian-
-              inspired wellness identity.
+              Sista Rootz is being shaped as a polished cannabis dispensary and
+              wellness-centered brand for adults 21+, honoring the late Sista
+              Ruth and the cultural roots that inspired the name.
             </p>
             <p>
-              The first public website is intentionally announcement-focused:
-              learn about the mission, preview planned categories, and connect
-              for updates or vendor inquiries while opening details are finalized.
+              The website is intentionally under construction: explore the
+              mission, learn what is planned, preview future categories, and
+              connect for vendor inquiry while opening details are finalized.
             </p>
           </div>
         </div>
@@ -117,60 +130,72 @@ export default function Home() {
       <Section tone="dark">
         <div className="mb-10 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
           <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-[#f4c84a]">
-              What&apos;s Coming
-            </p>
             <h2 className="font-display max-w-3xl text-5xl font-bold leading-[0.95] sm:text-6xl">
-              Future menu preview, not live inventory.
+              Expected product categories, shown as preview only.
             </h2>
+            <p className="mt-5 max-w-2xl leading-8 text-[#fff8e8]/70">
+              These categories are planned for the future Sista Rootz
+              experience. They are not live inventory and cannot be purchased on
+              this website.
+            </p>
           </div>
           <Link
             className="inline-flex min-h-12 w-fit items-center gap-2 rounded-md border border-[#d8b84f]/40 px-5 text-sm font-black uppercase text-[#fff8e8] transition hover:border-[#f4c84a]"
-            href="/whats-coming"
+            href="/menu-shop"
           >
-            View all categories <ArrowIcon />
+            Open Menu / Shop Preview <ArrowIcon />
           </Link>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {productCategories.slice(0, 3).map((category, index) => (
-            <ProductPreviewCard
+            <ProductCategoryCard
+              accent={category.accent}
               copy={category.copy}
               index={index}
               key={category.name}
               name={category.name}
+              shortCopy={category.shortCopy}
             />
           ))}
         </div>
       </Section>
 
       <Section tone="warm">
-        <div className="grid gap-6 lg:grid-cols-3">
-          {[
-            ["About", "Honor Sista Ruth and the cultural mission behind the brand.", "/about"],
-            [
-              "First-Time Visitors",
-              "Learn what new adult visitors can expect as details are announced.",
-              "/first-time-visitors"
-            ],
-            [
-              "Vendor Inquiry",
-              "Reach out through placeholder-friendly contact details and form fields.",
-              "/contact"
-            ]
-          ].map(([title, copy, href]) => (
+        <DesignOptionPreview />
+      </Section>
+
+      <Section tone="green">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+          <div>
+            <h2 className="font-display max-w-3xl text-5xl font-bold leading-[0.95] sm:text-6xl">
+              Vendor and contact details remain open for review.
+            </h2>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#fff8e8]/70">
+              Forms are placeholders only unless a backend is added later.
+              Contact information is available for project coordination and
+              vendor inquiry while the website is under construction.
+            </p>
+          </div>
+          <div className="relative overflow-hidden rounded-lg border border-[#f4c84a]/25 bg-black/25 p-7">
+            <div className="vine-frame right-4 top-4 opacity-45" aria-hidden="true" />
+            <p className="font-black uppercase text-[#f4c84a]">Main Phone</p>
+            <p className="mt-2 text-2xl font-bold">
+              <a href={site.phoneHref}>{site.phoneDisplay}</a>
+            </p>
+            <p className="mt-6 font-black uppercase text-[#f4c84a]">
+              Website Decisions
+            </p>
+            <p className="mt-2 text-lg">
+              {site.contactName}:{" "}
+              <a href={site.contactPhoneHref}>{site.contactPhoneDisplay}</a>
+            </p>
             <Link
-              className="group relative overflow-hidden rounded-lg border border-black/10 bg-[#fff8e8]/78 p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-              href={href}
-              key={title}
+              className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-md bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffdc60]"
+              href="/contact"
             >
-              <div className="root-corner right-4 top-4 opacity-30 group-hover:opacity-70" />
-              <h3 className="font-display text-4xl font-bold">{title}</h3>
-              <p className="mt-4 leading-7 text-[#5c5549]">{copy}</p>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase text-[#12864a]">
-                Open page <ArrowIcon />
-              </span>
+              Contact / Vendor Inquiry <ArrowIcon />
             </Link>
-          ))}
+          </div>
         </div>
       </Section>
     </main>
