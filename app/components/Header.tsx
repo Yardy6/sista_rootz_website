@@ -6,17 +6,22 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navItems } from "../lib/site-content";
 import { RootLine } from "./RootLine";
+import { RootPillar } from "./RootPillar";
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-[#f4c84a]/20 bg-[#080b07]/90 px-4 py-3 text-[#fff8e8] shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl lg:px-8">
+    <header className="site-header fixed inset-x-0 top-0 z-40 border-b border-[#f4c84a]/20 bg-[#080b07]/90 px-4 py-3 text-[#fff8e8] shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl lg:px-8">
+      <div className="header-root-field" aria-hidden="true">
+        <RootPillar className="header-root-pillar header-root-pillar-left" />
+        <RootPillar className="header-root-pillar header-root-pillar-right" />
+      </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden justify-center text-[#148b50]/70 md:flex">
         <RootLine className="h-6 max-w-4xl" />
       </div>
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+      <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between gap-4">
         <Link
           aria-label="Sista Rootz home"
           className="header-logo-crop inline-flex w-fit items-center"
@@ -35,7 +40,7 @@ export function Header() {
 
         <nav
           aria-label="Main navigation"
-          className="hidden items-center gap-2 text-sm font-black uppercase text-[#fff8e8]/80 lg:flex"
+          className="header-nav hidden items-center gap-2 text-sm font-black uppercase text-[#fff8e8]/80 lg:flex"
         >
           {navItems.map((item) => {
             const isActive =

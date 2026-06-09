@@ -1,4 +1,5 @@
 import { RootLine } from "./RootLine";
+import { RootPillar } from "./RootPillar";
 
 type PageHeroProps = {
   title: string;
@@ -9,7 +10,9 @@ type PageHeroProps = {
 export function PageHero({ title, copy, note }: PageHeroProps) {
   return (
     <section className="page-hero-surface px-5 pb-16 pt-36 text-[#fff8e8] lg:px-8 lg:pb-20 lg:pt-40">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.48fr] lg:items-end">
+      <RootPillar className="page-hero-root page-hero-root-left" />
+      <RootPillar className="page-hero-root page-hero-root-right" />
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.48fr] lg:items-end">
         <div>
           <h1 className="font-display max-w-5xl text-5xl font-bold leading-[0.92] sm:text-6xl lg:text-7xl">
             {title}
