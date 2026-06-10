@@ -21,7 +21,7 @@ export function ProductCategoryCard({
 
   return (
     <article
-      className={`category-card group relative overflow-hidden rounded-lg border border-[#d8b84f]/25 bg-[#10160d] text-[#fff8e8] shadow-[0_18px_50px_rgba(0,0,0,0.18)] ${
+      className={`category-card group relative overflow-hidden border border-[#d8b84f]/25 bg-[#10160d] text-[#fff8e8] shadow-[0_18px_50px_rgba(0,0,0,0.18)] ${
         isFeature ? "min-h-[380px] p-7 md:p-8" : "min-h-72 p-6"
       }`}
       style={{ "--category-accent": accent } as CSSProperties & Record<"--category-accent", string>}
@@ -43,10 +43,10 @@ export function ProductCategoryCard({
         </p>
       </div>
       <div className="mt-8 flex flex-wrap gap-3">
-        <span className="inline-flex min-h-11 items-center rounded-md bg-[#f4c84a] px-4 text-sm font-black uppercase text-[#07140d]">
+        <span className="inline-flex min-h-11 items-center bg-[#f4c84a] px-4 text-sm font-black uppercase text-[#07140d]">
           Coming Soon
         </span>
-        <span className="inline-flex min-h-11 items-center rounded-md border border-white/20 px-4 text-sm font-black uppercase text-[#fff8e8]/80">
+        <span className="inline-flex min-h-11 items-center border border-white/20 px-4 text-sm font-black uppercase text-[#fff8e8]/80">
           Preview Category
         </span>
       </div>
