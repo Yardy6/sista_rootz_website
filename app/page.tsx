@@ -21,51 +21,80 @@ function ArrowIcon() {
 export default function Home() {
   return (
     <main>
-      <section className="home-hero relative overflow-hidden px-5 pb-20 pt-40 text-[#fff8e8] lg:px-8 lg:min-h-[780px] lg:pb-24 lg:pt-48">
-        <div className="home-hero-pattern" aria-hidden="true" />
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="relative z-10">
-            <p className="mb-5 text-xs font-black uppercase text-[#f4c84a]">
-              Spiritual and Wellness Center
+      <section className="home-hero relative overflow-hidden px-5 text-[#fff8e8] lg:px-8">
+        <div className="home-hero-image" aria-hidden="true" />
+        <div className="home-hero-shade" aria-hidden="true" />
+
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-between pb-8 pt-28 lg:pb-10 lg:pt-32">
+          <div className="flex justify-end">
+            <p className="max-w-[190px] border-r border-white/35 pr-4 text-right text-[10px] font-bold uppercase leading-5 text-white/65">
+              Adults 21+ only
+              <br />
+              Coming soon
+              <br />
+              No online ordering
             </p>
-            <h1 className="font-display max-w-4xl text-6xl font-bold leading-[0.86] sm:text-7xl lg:text-9xl">
-              Rooted in culture. Growing with purpose.
-            </h1>
-            <p className="mt-7 max-w-xl text-lg font-semibold leading-8 text-[#fff8e8]/75">
-              A modern, urban, Rastafarian-inspired cannabis dispensary honoring
-              Sista Ruth and preparing to welcome adults 21+ in late August.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffdc60]"
-                href="/about"
-              >
-                Discover Our Story <ArrowIcon />
-              </Link>
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 border-b border-[#f4c84a]/60 px-2 text-sm font-black uppercase text-[#fff8e8] transition hover:text-[#f4c84a]"
-                href="/menu-shop"
-              >
-                Preview What’s Coming
-              </Link>
-            </div>
-            <div className="mt-12 flex items-center gap-5 border-t border-white/15 pt-6">
-              <p className="text-xs font-black uppercase text-[#f4c84a]">
-                Expected Opening
-              </p>
-              <p className="font-display text-3xl font-bold">{site.opening}</p>
-            </div>
           </div>
 
-          <div className="home-logo-stage relative z-10">
+          <div className="home-hero-brand mx-auto flex w-full max-w-5xl flex-col items-center text-center">
             <Image
               alt="Sista Rootz Spiritual and Wellness Center logo"
-              className="mx-auto h-auto w-full max-w-[680px] object-contain"
+              className="home-hero-logo h-auto w-full max-w-[500px] object-contain"
               height={1080}
               priority
               src="/images/sista-rootz-logo.jpg"
               width={1080}
             />
+            <p className="mt-5 text-xs font-bold uppercase text-white/75 sm:text-sm">
+              Rooted in culture · Growing with purpose
+            </p>
+          </div>
+
+          <div className="home-hero-bottom grid gap-5 border-t border-white/25 pt-5 md:grid-cols-[0.85fr_1fr_1fr] md:items-end">
+            <Link
+              className="home-feature-link group flex items-center gap-4 border border-white/20 bg-black/25 p-3 text-left backdrop-blur-sm"
+              href="/about"
+            >
+              <Image
+                alt=""
+                className="h-20 w-20 object-contain"
+                height={1080}
+                src="/images/sista-rootz-logo.jpg"
+                width={1080}
+              />
+              <span className="text-xs font-semibold leading-5 text-white/80">
+                Honoring Sista Ruth through culture, wellness, and community.
+                <span className="mt-1 flex items-center gap-2 font-bold uppercase text-[#f4c84a]">
+                  Our story <ArrowIcon />
+                </span>
+              </span>
+            </Link>
+
+            <div className="text-sm leading-6 text-white/70">
+              <p className="text-[10px] font-bold uppercase text-[#f4c84a]">
+                Expected Opening
+              </p>
+              <p className="font-display mt-1 text-3xl font-bold text-white">
+                {site.opening}
+              </p>
+              <p className="mt-2 max-w-sm">
+                A modern, urban, Rastafarian-inspired spiritual and wellness
+                dispensary for adults 21+.
+              </p>
+            </div>
+
+            <div className="text-sm leading-6 text-white/70 md:text-right">
+              <p>
+                Explore the mission, prepare for a first visit, and preview the
+                categories planned for the future Sista Rootz experience.
+              </p>
+              <Link
+                className="mt-3 inline-flex items-center gap-2 border-b border-white/40 pb-1 font-bold uppercase text-white transition hover:border-[#f4c84a] hover:text-[#f4c84a]"
+                href="/menu-shop"
+              >
+                Explore what’s coming <ArrowIcon />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

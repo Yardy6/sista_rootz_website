@@ -9,10 +9,15 @@ import { navItems } from "../lib/site-content";
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const isHome = pathname === "/";
 
   return (
-    <header className="site-header fixed inset-x-0 top-0 z-40 text-[#fff8e8]">
-      <div className="header-main px-4 py-3 lg:px-8">
+    <header
+      className={`site-header fixed inset-x-0 top-0 z-40 text-[#fff8e8] ${
+        isHome ? "site-header-home" : ""
+      }`}
+    >
+      <div className="header-main px-4 py-4 lg:px-8 lg:py-5">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
           <Link
             aria-label="Sista Rootz home"
@@ -32,7 +37,7 @@ export function Header() {
 
           <nav
             aria-label="Main navigation"
-            className="header-nav hidden items-center gap-1 text-xs font-black uppercase text-[#fff8e8]/80 lg:flex"
+            className="header-nav hidden items-center gap-2 text-[11px] font-bold uppercase text-[#fff8e8]/80 lg:flex"
           >
             {navItems.map((item) => {
               const isActive =
@@ -40,7 +45,7 @@ export function Header() {
 
               return (
                 <Link
-                  className={`header-nav-link px-4 py-3 transition hover:text-[#f4c84a] ${
+                  className={`header-nav-link px-4 py-3 transition hover:text-white ${
                     isActive ? "header-nav-link-active text-[#f4c84a]" : ""
                   }`}
                   href={item.href}
@@ -71,8 +76,6 @@ export function Header() {
           </button>
         </div>
       </div>
-
-      <div className="header-pattern-band" aria-hidden="true" />
 
       <div
         className={`mobile-nav-shell lg:hidden ${isOpen ? "mobile-nav-shell-open" : ""}`}

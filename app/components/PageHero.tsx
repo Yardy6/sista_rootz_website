@@ -9,7 +9,6 @@ type PageHeroProps = {
 export function PageHero({ title, copy, note }: PageHeroProps) {
   return (
     <section className="page-hero-surface px-5 pb-16 pt-40 text-[#fff8e8] lg:px-8 lg:pb-24 lg:pt-48">
-      <div className="page-hero-pattern" aria-hidden="true" />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.4fr] lg:items-end">
         <div>
           <h1 className="font-display max-w-5xl text-5xl font-bold leading-[0.92] sm:text-6xl lg:text-8xl">
