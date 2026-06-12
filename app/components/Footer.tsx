@@ -11,9 +11,9 @@ export function Footer() {
           <Image
             alt="Sista Rootz Spiritual and Wellness Center"
             className="h-auto w-44 object-contain"
-            height={1080}
-            src="/images/sista-rootz-logo.jpg"
-            width={1080}
+            height={635}
+            src="/images/sista-rootz-logo-transparent.png"
+              width={800}
           />
           <p className="mt-4 text-sm">Business/legal name: {site.legalName}</p>
           <p className="mt-2 text-sm">

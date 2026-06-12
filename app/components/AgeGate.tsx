@@ -76,16 +76,16 @@ export function AgeGate() {
       className="fixed inset-0 z-[70] grid place-items-center overflow-y-auto bg-[#050704]/95 p-5 backdrop-blur-md"
       role="dialog"
     >
-      <section className="age-panel relative w-full max-w-[480px] overflow-hidden rounded-lg border border-[#f4c84a]/35 p-6 text-center shadow-2xl sm:p-9">
+      <section className="age-panel relative w-full max-w-[480px] overflow-hidden border border-[#f4c84a]/35 p-6 text-center shadow-2xl sm:p-9">
         <div className="vine-frame left-5 top-5 rotate-180" aria-hidden="true" />
         <div className="vine-frame bottom-5 right-5" aria-hidden="true" />
         <Image
           alt="Sista Rootz Spiritual and Wellness Center logo"
           className="mx-auto mb-7 h-auto max-h-56 w-full max-w-72 object-contain"
-          height={1080}
+          height={635}
           priority
-          src="/images/sista-rootz-logo.jpg"
-          width={1080}
+          src="/images/sista-rootz-logo-transparent.png"
+          width={800}
         />
         <p className="font-display text-4xl font-bold uppercase text-[#f4c84a]">
           Adults 21+ Only

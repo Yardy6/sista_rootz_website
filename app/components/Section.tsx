@@ -14,8 +14,8 @@ const tones = {
 
 export function Section({ children, className = "", tone = "paper" }: SectionProps) {
   return (
-    <section className={`${tones[tone]} px-5 py-16 lg:px-8 lg:py-24 ${className}`}>
-      <div className="mx-auto max-w-7xl">{children}</div>
+    <section className={`scroll-section ${tones[tone]} px-5 py-16 lg:px-8 lg:py-24 ${className}`}>
+      <div className="section-inner mx-auto max-w-7xl">{children}</div>
     </section>
   );
 }

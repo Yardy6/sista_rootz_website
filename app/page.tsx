@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FluidLogo } from "./components/FluidLogo";
+import { BrandTicker } from "./components/BrandTicker";
 import { ProductCategoryCard } from "./components/ProductCategoryCard";
 import { Section, SectionLabel } from "./components/Section";
 import { productCategories, site } from "./lib/site-content";
@@ -37,14 +39,7 @@ export default function Home() {
           </div>
 
           <div className="home-hero-brand mx-auto flex w-full max-w-5xl flex-col items-center text-center">
-            <Image
-              alt="Sista Rootz Spiritual and Wellness Center logo"
-              className="home-hero-logo h-auto w-full max-w-[500px] object-contain"
-              height={1080}
-              priority
-              src="/images/sista-rootz-logo.jpg"
-              width={1080}
-            />
+            <FluidLogo className="home-hero-logo w-full max-w-[500px]" priority />
             <p className="mt-5 text-xs font-bold uppercase text-white/75 sm:text-sm">
               Rooted in culture · Growing with purpose
             </p>
@@ -58,9 +53,9 @@ export default function Home() {
               <Image
                 alt=""
                 className="h-20 w-20 object-contain"
-                height={1080}
-                src="/images/sista-rootz-logo.jpg"
-                width={1080}
+                height={635}
+                src="/images/sista-rootz-logo-transparent.png"
+                width={800}
               />
               <span className="text-xs font-semibold leading-5 text-white/80">
                 Honoring Sista Ruth through culture, wellness, and community.
@@ -98,6 +93,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <BrandTicker />
 
       <Section tone="gold">
         <div className="grid gap-12 lg:grid-cols-[0.72fr_1fr] lg:items-center">

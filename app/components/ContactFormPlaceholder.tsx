@@ -24,7 +24,7 @@ export function ContactFormPlaceholder({ variant = "vendor" }: ContactFormPlaceh
       <label className="grid gap-2 text-sm font-bold text-[#fff8e8]" htmlFor={`${variant}-name`}>
         Name
         <input
-          className="min-h-12 rounded-md border border-white/15 bg-white/[0.07] px-4 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
+          className="form-control min-h-12 border-b border-white/25 bg-transparent px-0 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
           id={`${variant}-name`}
           name="name"
           placeholder="Your name"
@@ -35,7 +35,7 @@ export function ContactFormPlaceholder({ variant = "vendor" }: ContactFormPlaceh
       <label className="grid gap-2 text-sm font-bold text-[#fff8e8]" htmlFor={`${variant}-email`}>
         Email address
         <input
-          className="min-h-12 rounded-md border border-white/15 bg-white/[0.07] px-4 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
+          className="form-control min-h-12 border-b border-white/25 bg-transparent px-0 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
           id={`${variant}-email`}
           name="email"
           placeholder="you@example.com"
@@ -46,7 +46,7 @@ export function ContactFormPlaceholder({ variant = "vendor" }: ContactFormPlaceh
       <label className="grid gap-2 text-sm font-bold text-[#fff8e8]" htmlFor={`${variant}-phone`}>
         Phone number <span className="font-medium text-[#fff8e8]/55">(optional)</span>
         <input
-          className="min-h-12 rounded-md border border-white/15 bg-white/[0.07] px-4 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
+          className="form-control min-h-12 border-b border-white/25 bg-transparent px-0 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
           id={`${variant}-phone`}
           name="phone"
           placeholder="(443) 000-0000"
@@ -57,7 +57,7 @@ export function ContactFormPlaceholder({ variant = "vendor" }: ContactFormPlaceh
         <label className="grid gap-2 text-sm font-bold text-[#fff8e8]" htmlFor="message">
           Inquiry details
           <textarea
-            className="min-h-32 rounded-md border border-white/15 bg-white/[0.07] px-4 py-3 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
+            className="form-control min-h-32 border-b border-white/25 bg-transparent px-0 py-3 text-[#fff8e8] placeholder:text-[#fff8e8]/40"
             id="message"
             name="message"
             placeholder="Share a short note about your inquiry."
@@ -65,7 +65,7 @@ export function ContactFormPlaceholder({ variant = "vendor" }: ContactFormPlaceh
         </label>
       ) : null}
       <button
-        className="min-h-12 rounded-md bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffdc60] disabled:cursor-not-allowed disabled:opacity-75"
+        className="min-h-12 bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffdc60] disabled:cursor-not-allowed disabled:opacity-75"
         disabled={submitted}
       >
         {submitted ? "Request Noted" : isUpdates ? "Notify Me" : "Send Placeholder Inquiry"}

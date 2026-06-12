@@ -120,7 +120,7 @@ export function ProductCategoryCarousel() {
       </div>
 
       <div
-        className="category-stage relative h-[500px] overflow-hidden rounded-lg border border-[#d8b84f]/20"
+        className="category-stage relative h-[500px] overflow-hidden border border-[#d8b84f]/20"
         onPointerCancel={() => {
           dragStartRef.current = null;
         }}

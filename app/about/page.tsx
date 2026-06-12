@@ -40,7 +40,7 @@ export default function AboutPage() {
           <div className="relative">
             <Image
               alt="Sista Rootz brand artwork"
-              className="rounded-lg border border-black/10 shadow-2xl"
+              className="brand-artwork border border-black/10 shadow-2xl"
               height={1200}
               src="/images/brand-book-cover.png"
               width={927}
@@ -84,17 +84,21 @@ export default function AboutPage() {
             </p>
             <RootLine className="mt-7 h-8 max-w-md text-[#148b50]/80" />
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {pillars.map((pillar) => (
+          <div className="editorial-list">
+            {pillars.map((pillar, index) => (
               <article
-                className="relative overflow-hidden rounded-lg border border-[#d8b84f]/20 bg-white/[0.055] p-6"
+                className="editorial-list-row interactive-panel relative overflow-hidden border-t border-[#d8b84f]/35 py-7"
                 key={pillar.title}
               >
-                <div className="vine-frame right-4 top-4 opacity-35" />
-                <h3 className="font-display text-4xl font-bold text-[#f4c84a]">
-                  {pillar.title}
-                </h3>
-                <p className="mt-4 leading-7 text-[#fff8e8]/70">{pillar.copy}</p>
+                <span className="font-display text-2xl text-[#f4c84a]/60">
+                  0{index + 1}
+                </span>
+                <div>
+                  <h3 className="font-display text-4xl font-bold text-[#f4c84a]">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-3 max-w-xl leading-7 text-[#fff8e8]/70">{pillar.copy}</p>
+                </div>
               </article>
             ))}
           </div>

@@ -28,10 +28,10 @@ export function Header() {
             <Image
               alt=""
               className="header-logo-image object-contain"
-              height={1080}
+              height={635}
               priority
-              src="/images/sista-rootz-logo.jpg"
-              width={1080}
+              src="/images/sista-rootz-logo-transparent.png"
+              width={800}
             />
           </Link>
 

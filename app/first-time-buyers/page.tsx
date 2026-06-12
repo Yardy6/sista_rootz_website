@@ -46,17 +46,21 @@ export default function FirstTimeBuyersPage() {
             <RootLine className="mt-7 h-8 max-w-md text-[#12864a]/75" />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {buyerGuidance.map((note) => (
+          <div className="editorial-list">
+            {buyerGuidance.map((note, index) => (
               <article
-                className="relative overflow-hidden rounded-lg border border-black/10 bg-white/75 p-6 shadow-sm"
+                className="editorial-list-row interactive-panel relative overflow-hidden border-t border-black/15 py-6"
                 key={note.title}
               >
-                <div className="vine-frame right-4 top-4 opacity-25" />
-                <h3 className="text-xl font-black uppercase text-[#12864a]">
-                  {note.title}
-                </h3>
-                <p className="mt-4 leading-7 text-[#5c5549]">{note.copy}</p>
+                <span className="font-display text-2xl text-[#12864a]/60">
+                  0{index + 1}
+                </span>
+                <div>
+                  <h3 className="text-xl font-black uppercase text-[#12864a]">
+                    {note.title}
+                  </h3>
+                  <p className="mt-3 leading-7 text-[#5c5549]">{note.copy}</p>
+                </div>
               </article>
             ))}
           </div>

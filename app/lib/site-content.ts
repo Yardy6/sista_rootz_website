@@ -13,7 +13,8 @@ export const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/first-time-buyers", label: "First Time Buyers" },
-  { href: "/menu-shop", label: "Menu / Shop" }
+  { href: "/menu-shop", label: "Menu / Shop" },
+  { href: "/contact", label: "Contact" }
 ];
 
 export const footerLinks = [
