@@ -45,7 +45,7 @@ export default function AboutPage() {
               src="/images/brand-book-cover.png"
               width={927}
             />
-            <div className="brand-gradient absolute -bottom-4 left-5 right-5 h-2 rounded-full" />
+            <div className="brand-gradient absolute -bottom-3 left-5 right-5 h-1" />
           </div>
           <div>
             <SectionLabel>Mission</SectionLabel>

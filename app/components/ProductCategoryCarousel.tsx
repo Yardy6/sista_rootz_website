@@ -89,38 +89,25 @@ export function ProductCategoryCarousel() {
       }}
       tabIndex={0}
     >
-      <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h2 className="font-display text-5xl font-bold leading-none text-[#fff8e8] md:text-6xl">
-            Menu / Shop preview
+      <div className="carousel-heading">
+        <div className="flex items-baseline justify-between gap-6">
+          <h2 className="font-display text-5xl font-bold leading-none text-[#15120d] md:text-6xl">
+            What’s coming
           </h2>
-          <p className="mt-4 max-w-2xl leading-8 text-[#fff8e8]/70">
-            Swipe through planned categories. This is a preview only, not live
-            inventory and not ecommerce.
+          <p className="font-display text-3xl text-[#15120d]/45">
+            {String(activeIndex + 1).padStart(2, "0")}
+            <span className="text-lg"> / {String(productCategories.length).padStart(2, "0")}</span>
           </p>
         </div>
-        <div className="flex gap-3">
-          <button
-            aria-label="Previous category"
-            className="inline-grid h-12 w-12 place-items-center rounded-md border border-[#f4c84a]/35 bg-white/[0.07] text-[#f4c84a] transition hover:bg-white/[0.12]"
-            onClick={() => goTo(activeIndex - 1)}
-            type="button"
-          >
-            <ArrowIcon direction="left" />
-          </button>
-          <button
-            aria-label="Next category"
-            className="inline-grid h-12 w-12 place-items-center rounded-md border border-[#f4c84a]/35 bg-[#f4c84a] text-[#07140d] transition hover:bg-[#ffdc60]"
-            onClick={() => goTo(activeIndex + 1)}
-            type="button"
-          >
-            <ArrowIcon direction="right" />
-          </button>
-        </div>
+        <div className="mt-5 h-px bg-black/15" />
+        <p className="mt-5 max-w-2xl leading-7 text-[#4f493e]">
+          A visual preview of planned categories. No live inventory, purchasing,
+          pricing, or online ordering is available.
+        </p>
       </div>
 
       <div
-        className="category-stage relative h-[500px] overflow-hidden border border-[#d8b84f]/20"
+        className="category-stage relative h-[660px] overflow-hidden"
         onPointerCancel={() => {
           dragStartRef.current = null;
         }}
@@ -128,7 +115,6 @@ export function ProductCategoryCarousel() {
         onPointerUp={handlePointerEnd}
         style={{ touchAction: "pan-y" }}
       >
-        <div className="absolute inset-0 category-stage-backdrop" />
         {categoryPositions.map(({ category, index, offset }) => {
           const isActive = offset === 0;
 
@@ -138,14 +124,15 @@ export function ProductCategoryCarousel() {
               className={`category-slide ${isActive ? "category-slide-active" : ""}`}
               key={category.name}
               style={{
-                opacity: Math.abs(offset) > 2 ? 0 : isActive ? 1 : 0.54,
-                transform: `translateX(${offset * 48}%) scale(${isActive ? 1 : 0.72})`,
+                opacity: Math.abs(offset) > 1 ? 0 : isActive ? 1 : 0.62,
+                transform: `translateX(${offset * 108}%) scale(${isActive ? 1 : 0.76})`,
                 zIndex: 10 - Math.abs(offset)
               }}
             >
               <ProductCategoryCard
                 accent={category.accent}
                 copy={category.copy}
+                imagePosition={category.imagePosition}
                 index={index}
                 name={category.name}
                 shortCopy={category.shortCopy}
@@ -155,18 +142,31 @@ export function ProductCategoryCarousel() {
           );
         })}
 
-        <div className="absolute bottom-6 left-6 right-6 z-20 flex items-center justify-between gap-4 text-sm text-[#fff8e8]/65">
-          <span>
-            {String(activeIndex + 1).padStart(2, "0")} /{" "}
-            {String(productCategories.length).padStart(2, "0")}
-          </span>
+        <button
+          aria-label="Previous category"
+          className="carousel-arrow carousel-arrow-left"
+          onClick={() => goTo(activeIndex - 1)}
+          type="button"
+        >
+          <ArrowIcon direction="left" />
+        </button>
+        <button
+          aria-label="Next category"
+          className="carousel-arrow carousel-arrow-right"
+          onClick={() => goTo(activeIndex + 1)}
+          type="button"
+        >
+          <ArrowIcon direction="right" />
+        </button>
+
+        <div className="absolute bottom-5 left-0 right-0 z-20 flex items-center justify-center">
           <div aria-label="Category position" className="flex gap-2" role="tablist">
             {productCategories.map((category, index) => (
               <button
                 aria-label={`Show ${category.name}`}
                 aria-selected={index === activeIndex}
-                className={`h-2.5 rounded-full transition ${
-                  index === activeIndex ? "w-10 bg-[#f4c84a]" : "w-2.5 bg-white/30"
+                className={`h-1 rounded-full transition ${
+                  index === activeIndex ? "w-12 bg-[#148b50]" : "w-5 bg-black/20"
                 }`}
                 key={category.name}
                 onClick={() => goTo(index)}
@@ -175,9 +175,11 @@ export function ProductCategoryCarousel() {
               />
             ))}
           </div>
-          <span className="hidden sm:inline">{activeCategory.name}</span>
         </div>
       </div>
+      <p className="mt-4 text-center text-xs font-black uppercase text-[#12864a]">
+        {activeCategory.name} · Coming soon
+      </p>
     </section>
   );
 }

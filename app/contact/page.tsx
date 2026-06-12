@@ -13,8 +13,8 @@ export default function ContactPage() {
       />
 
       <Section tone="green">
-        <div className="grid gap-6 lg:grid-cols-[0.75fr_1fr]">
-          <aside className="interactive-panel relative overflow-hidden border-t border-[#d8b84f]/40 bg-black/[0.18] p-8 text-[#fff8e8]">
+        <div className="contact-layout grid gap-12 lg:grid-cols-[0.72fr_1fr]">
+          <aside className="contact-panel relative overflow-hidden border-t border-[#d8b84f]/40 p-8 text-[#fff8e8]">
             <div className="vine-frame right-5 top-5 opacity-50" />
             <p className="mb-4 text-xs font-black uppercase text-[#f4c84a]">
               Business Details
@@ -57,7 +57,7 @@ export default function ContactPage() {
             </dl>
           </aside>
 
-          <section className="interactive-panel relative overflow-hidden border-t border-[#d8b84f]/40 bg-black/[0.18] p-8 text-[#fff8e8]">
+          <section className="contact-panel relative overflow-hidden border-t border-[#d8b84f]/40 p-8 text-[#fff8e8]">
             <div className="vine-frame right-5 top-5 opacity-40" />
             <p className="mb-4 text-xs font-black uppercase text-[#f4c84a]">
               Placeholder Form

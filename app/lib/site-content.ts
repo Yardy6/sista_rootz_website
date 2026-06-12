@@ -28,42 +28,48 @@ export const productCategories = [
     shortCopy: "Premium flower selections planned with clear education and adult-use guidance.",
     copy:
       "Future high-quality cannabis strains planned with clear education, thoughtful presentation, and respect for adult customers who want to understand aroma, format, and responsible use.",
-    accent: "#148b50"
+    accent: "#148b50",
+    imagePosition: "24% center"
   },
   {
     name: "Edibles",
     shortCopy: "Consumables planned around serving awareness, care, and responsible pacing.",
     copy:
       "Planned consumables selected with attention to natural standards, serving awareness, onset timing, and responsible use education for adults 21+.",
-    accent: "#f0c448"
+    accent: "#f0c448",
+    imagePosition: "44% center"
   },
   {
     name: "Concentrates",
     shortCopy: "Premium oils, waxes, and tinctures planned for a curated future menu.",
     copy:
       "Premium oils, waxes, and tinctures are planned as part of a future curated product experience with potency education and clear expectations.",
-    accent: "#d94b3d"
+    accent: "#d94b3d",
+    imagePosition: "64% center"
   },
   {
     name: "Accessories",
     shortCopy: "Essentials, lifestyle tools, and culturally grounded accessories planned.",
     copy:
       "Culturally significant smoking and vaping devices, essentials, and lifestyle tools are planned for later, with no live purchasing available today.",
-    accent: "#182416"
+    accent: "#182416",
+    imagePosition: "80% center"
   },
   {
     name: "Merchandise",
     shortCopy: "Branded apparel and Rastafarian-inspired items for future community expression.",
     copy:
       "Branded apparel and Rastafarian-inspired items are intended to support the Sista Rootz community and the story behind the brand.",
-    accent: "#b99a33"
+    accent: "#b99a33",
+    imagePosition: "center 30%"
   },
   {
     name: "Educational Materials",
     shortCopy: "Resources on Rastafarian culture, wellness, cannabis literacy, and natural living.",
     copy:
       "Books, pamphlets, and resources are planned around Rastafarian culture, wellness, cannabis literacy, natural living, and the spiritual meaning carried by the brand.",
-    accent: "#2f704d"
+    accent: "#2f704d",
+    imagePosition: "center 72%"
   }
 ];
 

@@ -86,6 +86,7 @@ export default function FirstTimeBuyersPage() {
             <ProductCategoryCard
               accent={category.accent}
               copy={category.copy}
+              imagePosition={category.imagePosition}
               index={index}
               key={category.name}
               name={category.name}
@@ -107,7 +108,7 @@ export default function FirstTimeBuyersPage() {
             not available here.
           </p>
           <Link
-            className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffdc60]"
+            className="button-gold mt-8 inline-flex min-h-12 items-center gap-2 px-5 text-sm font-black uppercase text-[#07140d]"
             href="/menu-shop"
           >
             Preview Menu / Shop <ArrowIcon />

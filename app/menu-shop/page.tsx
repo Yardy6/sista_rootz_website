@@ -11,7 +11,7 @@ export default function MenuShopPage() {
         title="Menu / Shop is a coming-soon category preview."
       />
 
-      <Section tone="dark">
+      <Section tone="warm">
         <ProductCategoryCarousel />
       </Section>
 

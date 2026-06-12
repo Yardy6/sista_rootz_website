@@ -111,14 +111,14 @@ export function AgeGate() {
             Date of birth
           </label>
           <input
-            className="min-h-12 rounded-md border border-white/20 bg-white/[0.08] px-4 text-[#fff8e8]"
+            className="min-h-12 border border-white/20 bg-white/[0.08] px-4 text-[#fff8e8]"
             id="birthdate"
             max={today}
             name="birthdate"
             required
             type="date"
           />
-          <button className="min-h-12 rounded-md bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffd95a]">
+          <button className="button-gold min-h-12 px-5 text-sm font-black uppercase text-[#07140d]">
             Enter Site
           </button>
           <p aria-live="polite" className="min-h-6 text-center text-sm font-bold text-[#ffd4cf]">

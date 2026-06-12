@@ -9,14 +9,8 @@ import { navItems } from "../lib/site-content";
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const isHome = pathname === "/";
-
   return (
-    <header
-      className={`site-header fixed inset-x-0 top-0 z-40 text-[#fff8e8] ${
-        isHome ? "site-header-home" : ""
-      }`}
-    >
+    <header className="site-header absolute inset-x-0 top-0 z-40 text-[#fff8e8]">
       <div className="header-main px-4 py-4 lg:px-8 lg:py-5">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
           <Link
@@ -37,7 +31,7 @@ export function Header() {
 
           <nav
             aria-label="Main navigation"
-            className="header-nav hidden items-center gap-2 text-[11px] font-bold uppercase text-[#fff8e8]/80 lg:flex"
+            className="header-nav hidden items-center gap-1 text-[11px] font-bold uppercase text-[#fff8e8]/75 lg:flex"
           >
             {navItems.map((item) => {
               const isActive =

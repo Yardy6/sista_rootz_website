@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 type ProductCategoryCardProps = {
   accent?: string;
   copy: string;
+  imagePosition?: string;
   index: number;
   name: string;
   shortCopy?: string;
@@ -12,6 +13,7 @@ type ProductCategoryCardProps = {
 export function ProductCategoryCard({
   accent = "#148b50",
   copy,
+  imagePosition = "center",
   index,
   name,
   shortCopy,
@@ -21,34 +23,36 @@ export function ProductCategoryCard({
 
   return (
     <article
-      className={`category-card group relative overflow-hidden border border-[#d8b84f]/25 bg-[#10160d] text-[#fff8e8] shadow-[0_18px_50px_rgba(0,0,0,0.18)] ${
-        isFeature ? "min-h-[380px] p-7 md:p-8" : "min-h-72 p-6"
+      className={`category-card group relative overflow-hidden text-[#fff8e8] ${
+        isFeature ? "min-h-[470px] p-7 md:p-9" : "min-h-[340px] p-6"
       }`}
-      style={{ "--category-accent": accent } as CSSProperties & Record<"--category-accent", string>}
+      style={
+        {
+          "--category-accent": accent,
+          "--category-position": imagePosition
+        } as CSSProperties & Record<"--category-accent" | "--category-position", string>
+      }
     >
-      <div className="vine-frame right-4 top-4 opacity-35 transition group-hover:opacity-70" />
-      <span className="font-display inline-grid h-14 w-14 place-items-center rounded-full border border-[#d8b84f]/45 text-2xl font-bold text-[#f4c84a]">
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <div className={isFeature ? "mt-10" : "mt-10"}>
+      <div className="category-card-image" aria-hidden="true" />
+      <div className="category-card-shade" aria-hidden="true" />
+      <div className="flex items-center justify-between text-[10px] font-black uppercase text-white/70">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <span>Preview only</span>
+      </div>
+      <div className="mt-auto">
         <h3
-          className={`font-display font-bold leading-none ${
-            isFeature ? "text-5xl md:text-6xl" : "text-4xl"
+          className={`font-display font-bold leading-[0.82] ${
+            isFeature ? "text-7xl md:text-8xl" : "text-5xl"
           }`}
         >
           {name}
         </h3>
-        <p className={`mt-5 leading-8 text-[#fff8e8]/70 ${isFeature ? "max-w-lg text-lg" : ""}`}>
+        <p className={`mt-5 leading-7 text-white/72 ${isFeature ? "max-w-lg text-base" : "text-sm"}`}>
           {isFeature ? copy : shortCopy ?? copy}
         </p>
-      </div>
-      <div className="mt-8 flex flex-wrap gap-3">
-        <span className="inline-flex min-h-11 items-center bg-[#f4c84a] px-4 text-sm font-black uppercase text-[#07140d]">
-          Coming Soon
-        </span>
-        <span className="inline-flex min-h-11 items-center border border-white/20 px-4 text-sm font-black uppercase text-[#fff8e8]/80">
-          Preview Category
-        </span>
+        <div className="mt-6 h-px w-full bg-white/25">
+          <div className="h-px w-16 bg-[#f4c84a]" />
+        </div>
       </div>
     </article>
   );

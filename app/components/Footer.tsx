@@ -5,7 +5,7 @@ import { RootLine } from "./RootLine";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#d8b84f]/25 bg-[#070806] px-5 py-12 text-[#fff8e8]/70 lg:px-8">
+    <footer className="site-footer border-t border-[#d8b84f]/25 bg-[#070806] px-5 py-16 text-[#fff8e8]/70 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[260px_1fr_260px]">
         <div>
           <Image

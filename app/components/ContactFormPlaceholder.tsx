@@ -20,7 +20,7 @@ export function ContactFormPlaceholder({ variant = "vendor" }: ContactFormPlaceh
   }
 
   return (
-    <form className="grid gap-4" onSubmit={handleSubmit}>
+    <form className="contact-form grid gap-5" onSubmit={handleSubmit}>
       <label className="grid gap-2 text-sm font-bold text-[#fff8e8]" htmlFor={`${variant}-name`}>
         Name
         <input
@@ -65,7 +65,7 @@ export function ContactFormPlaceholder({ variant = "vendor" }: ContactFormPlaceh
         </label>
       ) : null}
       <button
-        className="min-h-12 bg-[#f4c84a] px-5 text-sm font-black uppercase text-[#07140d] transition hover:bg-[#ffdc60] disabled:cursor-not-allowed disabled:opacity-75"
+        className="button-gold min-h-12 px-5 text-sm font-black uppercase text-[#07140d] disabled:cursor-not-allowed disabled:opacity-75"
         disabled={submitted}
       >
         {submitted ? "Request Noted" : isUpdates ? "Notify Me" : "Send Placeholder Inquiry"}
