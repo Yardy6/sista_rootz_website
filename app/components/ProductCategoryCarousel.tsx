@@ -120,19 +120,32 @@ export function ProductCategoryCarousel() {
 
           return (
             <div
-              aria-hidden={!isActive}
+              aria-label={!isActive ? `Show ${category.name}` : undefined}
+              aria-hidden={Math.abs(offset) > 1}
               className={`category-slide ${isActive ? "category-slide-active" : ""}`}
               key={category.name}
+              onClick={() => {
+                if (!isActive) {
+                  goTo(index);
+                }
+              }}
+              onKeyDown={(event) => {
+                if (!isActive && (event.key === "Enter" || event.key === " ")) {
+                  event.preventDefault();
+                  goTo(index);
+                }
+              }}
+              role={!isActive ? "button" : undefined}
               style={{
                 opacity: Math.abs(offset) > 1 ? 0 : isActive ? 1 : 0.62,
                 transform: `translateX(${offset * 108}%) scale(${isActive ? 1 : 0.76})`,
                 zIndex: 10 - Math.abs(offset)
               }}
+              tabIndex={!isActive && Math.abs(offset) === 1 ? 0 : -1}
             >
               <ProductCategoryCard
                 accent={category.accent}
                 copy={category.copy}
-                imagePosition={category.imagePosition}
                 index={index}
                 name={category.name}
                 shortCopy={category.shortCopy}

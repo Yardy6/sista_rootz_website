@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 type ProductCategoryCardProps = {
   accent?: string;
   copy: string;
-  imagePosition?: string;
   index: number;
   name: string;
   shortCopy?: string;
@@ -13,7 +12,6 @@ type ProductCategoryCardProps = {
 export function ProductCategoryCard({
   accent = "#148b50",
   copy,
-  imagePosition = "center",
   index,
   name,
   shortCopy,
@@ -28,12 +26,11 @@ export function ProductCategoryCard({
       }`}
       style={
         {
-          "--category-accent": accent,
-          "--category-position": imagePosition
-        } as CSSProperties & Record<"--category-accent" | "--category-position", string>
+          "--category-accent": accent
+        } as CSSProperties & Record<"--category-accent", string>
       }
     >
-      <div className="category-card-image" aria-hidden="true" />
+      <div className="category-card-color" aria-hidden="true" />
       <div className="category-card-shade" aria-hidden="true" />
       <div className="flex items-center justify-between text-[10px] font-black uppercase text-white/70">
         <span>{String(index + 1).padStart(2, "0")}</span>

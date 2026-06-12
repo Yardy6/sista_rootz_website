@@ -86,7 +86,6 @@ export default function FirstTimeBuyersPage() {
             <ProductCategoryCard
               accent={category.accent}
               copy={category.copy}
-              imagePosition={category.imagePosition}
               index={index}
               key={category.name}
               name={category.name}
