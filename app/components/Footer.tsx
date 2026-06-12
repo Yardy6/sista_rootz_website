@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footerLinks, site } from "../lib/site-content";
-import { RootLine } from "./RootLine";
+import { RastaDivider } from "./RastaDivider";
 
 export function Footer() {
   return (
@@ -24,7 +24,7 @@ export function Footer() {
         </div>
 
         <div>
-          <RootLine className="mb-5 h-8 w-full max-w-xl text-[#f4c84a]/55" />
+          <RastaDivider className="mb-7 max-w-xl opacity-55" />
           <p className="max-w-3xl text-sm leading-7">
             Adults 21+ only. Sista Rootz is coming soon with expected opening in{" "}
             {site.opening}. This website is under construction and for

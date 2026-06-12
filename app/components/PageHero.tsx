@@ -1,4 +1,4 @@
-import { RootLine } from "./RootLine";
+import { RastaDivider } from "./RastaDivider";
 
 type PageHeroProps = {
   title: string;
@@ -27,7 +27,7 @@ export function PageHero({ title, copy, note }: PageHeroProps) {
           <p className="mt-4 text-sm leading-7 text-[#fff8e8]/70">
             Under construction, adults 21+ only, and preview information only.
           </p>
-          <RootLine className="mt-5 h-7 text-[#f4c84a]/55" />
+          <RastaDivider className="mt-6 opacity-70" />
         </div>
       </div>
     </section>

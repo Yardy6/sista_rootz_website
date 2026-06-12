@@ -84,19 +84,22 @@ textarea:focus-visible,
 .header-main {
   position: relative;
   z-index: 2;
+  overflow: hidden;
   background: linear-gradient(180deg, rgba(3, 7, 4, 0.74), rgba(3, 7, 4, 0.24) 72%, transparent);
   pointer-events: auto;
 }
 
-.header-root-line {
+.header-main::before {
   position: absolute;
-  top: 50%;
+  top: 54%;
   left: 50%;
   z-index: -1;
-  width: min(46vw, 620px);
-  color: rgba(244, 200, 74, 0.48);
-  filter: drop-shadow(-36px 0 0 rgba(20, 139, 80, 0.2)) drop-shadow(36px 0 0 rgba(217, 75, 61, 0.16));
-  opacity: 0.62;
+  width: min(70vw, 1040px);
+  height: 74px;
+  background: url("/images/rasta-vine-divider.png") center / contain no-repeat;
+  content: "";
+  filter: blur(0.45px);
+  opacity: 0.2;
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
@@ -278,6 +281,10 @@ textarea:focus-visible,
 
 .page-hero-note {
   background: transparent;
+}
+
+.rasta-divider {
+  filter: saturate(0.88);
 }
 
 .paper-texture {
@@ -639,11 +646,11 @@ textarea:focus-visible,
 .site-footer::before {
   position: absolute;
   inset: 0;
-  background: url("/images/root-pattern-horizontal.jpg") right 8% center / min(50vw, 620px) auto no-repeat;
+  background: url("/images/rasta-vine-divider.png") right 8% center / min(64vw, 860px) auto no-repeat;
   content: "";
   mask-image: linear-gradient(90deg, transparent, black);
   mix-blend-mode: screen;
-  opacity: 0.07;
+  opacity: 0.1;
   pointer-events: none;
 }
 
@@ -692,10 +699,10 @@ textarea:focus-visible,
     display: none;
   }
 
-  .header-root-line {
-    left: 48%;
-    width: 56vw;
-    opacity: 0.32;
+  .header-main::before {
+    width: 92vw;
+    height: 64px;
+    opacity: 0.18;
   }
 
   .page-hero-surface {

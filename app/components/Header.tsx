@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navItems } from "../lib/site-content";
-import { RootLine } from "./RootLine";
 
 export function Header() {
   const pathname = usePathname();
@@ -13,7 +12,6 @@ export function Header() {
   return (
     <header className="site-header absolute inset-x-0 top-0 z-40 text-[#fff8e8]">
       <div className="header-main px-4 py-4 lg:px-8 lg:py-5">
-        <RootLine className="header-root-line" />
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
           <Link
             aria-label="Sista Rootz home"
