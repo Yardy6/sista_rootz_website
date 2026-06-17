@@ -22,16 +22,16 @@ function ArrowIcon() {
 export default function Home() {
   return (
     <main>
-      <section className="home-hero relative overflow-hidden px-5 text-[#fff8e8] lg:px-8">
+      <section className="home-hero relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pb-10 pt-24 text-[#fff8e8] sm:px-8 lg:px-10 lg:pt-28 xl:pt-32 2xl:px-12">
         <div className="home-hero-image" aria-hidden="true" />
         <div className="home-hero-shade" aria-hidden="true" />
 
-        <div className="home-hero-sticky relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center pb-8 pt-28 lg:pb-10 lg:pt-32">
+        <div className="home-hero-sticky relative z-10 mx-auto flex min-h-[calc(100svh-6rem)] w-full max-w-[1600px] flex-col items-center justify-center">
           <div />
 
-          <div className="home-hero-brand mx-auto flex w-full max-w-5xl flex-col items-center text-center">
+          <div className="home-hero-brand mx-auto flex w-full max-w-[1100px] flex-col items-center justify-center text-center min-[1800px]:max-w-[1240px]">
             <HomeLogoIntro />
-            <p className="mt-5 text-xs font-bold uppercase text-white/75 sm:text-sm">
+            <p className="mt-[clamp(1.25rem,2.2vw,2.35rem)] text-[clamp(0.78rem,0.9vw,1.05rem)] font-bold uppercase text-white/80">
               Rooted in culture · Growing with purpose
             </p>
           </div>

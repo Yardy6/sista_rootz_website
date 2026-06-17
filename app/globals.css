@@ -64,14 +64,14 @@ textarea:focus-visible,
 }
 
 .header-logo-crop {
-  width: 92px;
-  height: 68px;
+  width: clamp(92px, 7vw, 142px);
+  height: clamp(58px, 5.3vw, 92px);
   overflow: visible;
 }
 
 .header-logo-image {
-  width: 92px;
-  height: 68px;
+  width: 100%;
+  height: 100%;
   max-width: none;
   transform: none;
 }
@@ -162,15 +162,14 @@ textarea:focus-visible,
 }
 
 .home-hero {
-  min-height: 148svh;
-  overflow: visible !important;
-  padding-bottom: 0;
-  padding-top: 0;
+  height: 100svh;
+  min-height: 100svh;
   background: #071009;
+  isolation: isolate;
 }
 
 .home-hero-sticky {
-  position: sticky;
+  position: relative;
   top: 0;
 }
 
@@ -190,18 +189,18 @@ textarea:focus-visible,
 
 .home-hero-image {
   position: absolute;
-  inset: -18px;
+  inset: 0;
   background: url("/images/cannabis-greenhouse-hero.jpg") center / cover no-repeat;
-  filter: blur(4px);
-  transform: scale(1.025);
+  filter: none;
+  transform: none;
 }
 
 .home-hero-shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(3, 7, 4, 0.7) 0%, rgba(4, 10, 6, 0.38) 38%, rgba(3, 7, 4, 0.86) 100%),
-    linear-gradient(90deg, rgba(4, 9, 5, 0.35), rgba(4, 9, 5, 0.1), rgba(4, 9, 5, 0.35));
+    linear-gradient(180deg, rgba(3, 7, 4, 0.64) 0%, rgba(4, 10, 6, 0.42) 42%, rgba(3, 7, 4, 0.72) 100%),
+    linear-gradient(90deg, rgba(4, 9, 5, 0.5), rgba(4, 9, 5, 0.28), rgba(4, 9, 5, 0.5));
 }
 
 .home-hero-logo {
@@ -209,7 +208,31 @@ textarea:focus-visible,
 }
 
 .home-logo-intro {
-  width: min(48vw, 480px);
+  width: min(72vw, 520px);
+}
+
+@media (min-width: 768px) {
+  .home-logo-intro {
+    width: min(58vw, 620px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .home-logo-intro {
+    width: min(42vw, 760px);
+  }
+}
+
+@media (min-width: 1536px) {
+  .home-logo-intro {
+    width: min(38vw, 860px);
+  }
+}
+
+@media (min-width: 1800px) {
+  .home-logo-intro {
+    width: min(36vw, 920px);
+  }
 }
 
 .home-logo-video-shell {
@@ -254,17 +277,17 @@ textarea:focus-visible,
 .home-logo-still {
   display: block;
   height: auto;
-  max-width: 460px;
+  max-width: none;
   pointer-events: none;
   position: relative;
-  width: min(100%, 460px);
+  width: 100%;
   z-index: 3;
 }
 
 .home-logo-canvas {
   display: block;
   height: auto;
-  width: min(100%, 460px);
+  width: 100%;
   aspect-ratio: 800 / 635;
   background: transparent;
   filter: none;
@@ -335,21 +358,16 @@ textarea:focus-visible,
 
 @media (max-width: 640px) {
   .home-hero {
-    min-height: 152svh;
+    min-height: 100svh;
   }
 
   .home-logo-intro {
-    width: min(100%, 288px);
+    width: min(82vw, 320px);
   }
 
-  .home-logo-still {
-    max-width: 264px;
-    width: min(100%, 264px);
-  }
-
-  .home-logo-canvas,
-  .home-logo-video-shell::before {
-    width: min(100%, 264px);
+  .home-logo-still,
+  .home-logo-canvas {
+    width: 100%;
   }
 
   .age-fields {
@@ -833,16 +851,11 @@ textarea:focus-visible,
 
 @media (max-width: 760px) {
   .home-hero {
-    min-height: 152svh;
     padding-top: 0;
   }
 
   .home-hero-bottom {
     padding-bottom: 1rem;
-  }
-
-  .home-hero-logo {
-    max-width: 290px;
   }
 
   .scroll-progress {
