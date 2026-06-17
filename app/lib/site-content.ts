@@ -19,7 +19,7 @@ export const navItems = [
 
 export const footerLinks = [
   ...navItems,
-  { href: "/contact", label: "Contact / Vendor Inquiry" }
+  { href: "/contact", label: "Contact / Inquiry" }
 ];
 
 export const productCategories = [

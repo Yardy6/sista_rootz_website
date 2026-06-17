@@ -90,15 +90,9 @@ export function ProductCategoryCarousel() {
       tabIndex={0}
     >
       <div className="carousel-heading">
-        <div className="flex items-baseline justify-between gap-6">
-          <h2 className="font-display text-5xl font-bold leading-none text-[#15120d] md:text-6xl">
-            What’s coming
-          </h2>
-          <p className="font-display text-3xl text-[#15120d]/45">
-            {String(activeIndex + 1).padStart(2, "0")}
-            <span className="text-lg"> / {String(productCategories.length).padStart(2, "0")}</span>
-          </p>
-        </div>
+        <h2 className="font-display text-5xl font-bold leading-none text-[#15120d] md:text-6xl">
+          What’s coming
+        </h2>
         <div className="mt-5 h-px bg-black/15" />
         <p className="mt-5 max-w-2xl leading-7 text-[#4f493e]">
           A visual preview of planned categories. No live inventory, purchasing,
@@ -137,8 +131,8 @@ export function ProductCategoryCarousel() {
               }}
               role={!isActive ? "button" : undefined}
               style={{
-                opacity: Math.abs(offset) > 1 ? 0 : isActive ? 1 : 0.62,
-                transform: `translateX(${offset * 108}%) scale(${isActive ? 1 : 0.76})`,
+                opacity: Math.abs(offset) > 1 ? 0 : isActive ? 1 : 0.72,
+                transform: `translateX(${offset * 82}%) scale(${isActive ? 1 : 0.78})`,
                 zIndex: 10 - Math.abs(offset)
               }}
               tabIndex={!isActive && Math.abs(offset) === 1 ? 0 : -1}
