@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HomeLogoIntro } from "./components/HomeLogoIntro";
 import { ProductCategoryCard } from "./components/ProductCategoryCard";
+import { ScrollLogoAnimation } from "./components/ScrollLogoAnimation";
 import { Section, SectionLabel } from "./components/Section";
 import { productCategories } from "./lib/site-content";
 
@@ -30,7 +30,9 @@ export default function Home() {
           <div />
 
           <div className="home-hero-brand mx-auto flex w-full max-w-[1100px] flex-col items-center justify-center text-center min-[1800px]:max-w-[1240px]">
-            <HomeLogoIntro />
+            <div className="home-logo-intro scroll-logo-animation">
+              <ScrollLogoAnimation />
+            </div>
             <p className="mt-[clamp(1.25rem,2.2vw,2.35rem)] text-[clamp(0.78rem,0.9vw,1.05rem)] font-bold uppercase text-white/80">
               Rooted in culture · Growing with purpose
             </p>
