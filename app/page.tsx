@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HomeLogoIntro } from "./components/HomeLogoIntro";
 import { ProductCategoryCard } from "./components/ProductCategoryCard";
 import { Section, SectionLabel } from "./components/Section";
 import { productCategories } from "./lib/site-content";
@@ -25,18 +26,11 @@ export default function Home() {
         <div className="home-hero-image" aria-hidden="true" />
         <div className="home-hero-shade" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center pb-8 pt-28 lg:pb-10 lg:pt-32">
+        <div className="home-hero-sticky relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center pb-8 pt-28 lg:pb-10 lg:pt-32">
           <div />
 
           <div className="home-hero-brand mx-auto flex w-full max-w-5xl flex-col items-center text-center">
-            <Image
-              alt="Sista Rootz Spiritual and Wellness Center"
-              className="home-hero-logo h-auto w-full max-w-[500px] object-contain"
-              height={635}
-              priority
-              src="/images/sista-rootz-logo-transparent.png"
-              width={800}
-            />
+            <HomeLogoIntro />
             <p className="mt-5 text-xs font-bold uppercase text-white/75 sm:text-sm">
               Rooted in culture · Growing with purpose
             </p>

@@ -1,16 +1,42 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 const storageKey = "sistaRootzAgeVerified";
 const ageVerifiedEvent = "sista-rootz-age-verified";
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 
-function getAge(dateValue: string) {
-  const birthDate = new Date(`${dateValue}T00:00:00`);
+function getAge(monthValue: string, dayValue: string, yearValue: string) {
+  const month = Number(monthValue);
+  const day = Number(dayValue);
+  const year = Number(yearValue);
   const today = new Date();
+  const birthDate = new Date(year, month - 1, day);
 
-  if (Number.isNaN(birthDate.getTime()) || birthDate > today) {
+  if (
+    !month ||
+    !day ||
+    yearValue.length !== 4 ||
+    Number.isNaN(birthDate.getTime()) ||
+    birthDate.getMonth() !== month - 1 ||
+    birthDate.getDate() !== day ||
+    birthDate.getFullYear() !== year ||
+    birthDate > today
+  ) {
     return null;
   }
 
@@ -28,7 +54,16 @@ function getAge(dateValue: string) {
 export function AgeGate() {
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState("");
-  const today = new Date().toISOString().slice(0, 10);
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [year, setYear] = useState("");
+  const dayRef = useRef<HTMLInputElement>(null);
+  const yearRef = useRef<HTMLInputElement>(null);
+  const canSubmit = month.length > 0 && day.length > 0 && year.length === 4;
+  const progress = useMemo(
+    () => [month, day, year].filter(Boolean).length,
+    [day, month, year]
+  );
 
   useEffect(() => {
     const verified = window.localStorage.getItem(storageKey) === "true";
@@ -43,19 +78,15 @@ export function AgeGate() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const age = getAge(String(form.get("birthdate") ?? ""));
+    const age = getAge(month, day, year);
 
     if (age === null) {
-      setError("Please enter a valid date of birth.");
+      setError("Please enter a valid birth date.");
       return;
     }
 
     if (age < 21) {
-      setError("You must be 21 or older to enter this site.");
-      window.setTimeout(() => {
-        window.location.href = "https://www.google.com/";
-      }, 900);
+      setError("Access is restricted. You must be 21 or older to enter Sista Rootz.");
       return;
     }
 
@@ -76,12 +107,12 @@ export function AgeGate() {
       className="fixed inset-0 z-[70] grid place-items-center overflow-y-auto bg-[#050704]/95 p-5 backdrop-blur-md"
       role="dialog"
     >
-      <section className="age-panel relative w-full max-w-[480px] overflow-hidden border border-[#f4c84a]/35 p-6 text-center shadow-2xl sm:p-9">
+      <section className="age-panel relative w-full max-w-[540px] overflow-hidden border border-[#f4c84a]/35 p-6 text-center shadow-2xl sm:p-9">
         <div className="vine-frame left-5 top-5 rotate-180" aria-hidden="true" />
         <div className="vine-frame bottom-5 right-5" aria-hidden="true" />
         <Image
           alt="Sista Rootz Spiritual and Wellness Center logo"
-          className="mx-auto mb-7 h-auto max-h-56 w-full max-w-72 object-contain"
+          className="mx-auto mb-6 h-auto max-h-52 w-full max-w-72 object-contain"
           height={635}
           priority
           src="/images/sista-rootz-logo-transparent.png"
@@ -94,31 +125,95 @@ export function AgeGate() {
           className="font-display mt-3 text-5xl font-bold leading-[0.94] text-[#fff8e8]"
           id="age-gate-title"
         >
-          Verify your age to enter.
+          Confirm your birth date.
         </h1>
         <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-[#fff8e8]/70">
-          Sista Rootz is an adults-only coming-soon website. Please confirm your
-          birthday before continuing.
+          Sista Rootz is an adults-only coming-soon website. Enter your birthday
+          to continue.
         </p>
         <p className="mt-3 text-sm font-black text-[#f4c84a]">
           You must be 21 or older to enter this site.
         </p>
-        <form className="mt-7 grid gap-3 text-left" onSubmit={handleSubmit}>
-          <label
-            className="text-xs font-black uppercase text-[#f4c84a]"
-            htmlFor="birthdate"
+
+        <form className="age-form mt-7 grid gap-4 text-left" onSubmit={handleSubmit}>
+          <div className="age-fields" aria-label="Date of birth">
+            <label className="age-field age-field-month" htmlFor="birth-month">
+              <span>Month</span>
+              <select
+                id="birth-month"
+                name="birth-month"
+                onChange={(event) => {
+                  setMonth(event.target.value);
+                  setError("");
+                  if (event.target.value) {
+                    dayRef.current?.focus();
+                  }
+                }}
+                required
+                value={month}
+              >
+                <option value="">Month</option>
+                {months.map((monthName, index) => (
+                  <option key={monthName} value={String(index + 1)}>
+                    {monthName}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="age-field" htmlFor="birth-day">
+              <span>Day</span>
+              <input
+                id="birth-day"
+                inputMode="numeric"
+                maxLength={2}
+                name="birth-day"
+                onChange={(event) => {
+                  const value = event.target.value.replace(/\D/g, "").slice(0, 2);
+                  setDay(value);
+                  setError("");
+                  if (value.length === 2) {
+                    yearRef.current?.focus();
+                  }
+                }}
+                placeholder="DD"
+                ref={dayRef}
+                required
+                type="text"
+                value={day}
+              />
+            </label>
+
+            <label className="age-field" htmlFor="birth-year">
+              <span>Year</span>
+              <input
+                id="birth-year"
+                inputMode="numeric"
+                maxLength={4}
+                name="birth-year"
+                onChange={(event) => {
+                  setYear(event.target.value.replace(/\D/g, "").slice(0, 4));
+                  setError("");
+                }}
+                placeholder="YYYY"
+                ref={yearRef}
+                required
+                type="text"
+                value={year}
+              />
+            </label>
+          </div>
+
+          <div className="age-progress" aria-hidden="true">
+            {[0, 1, 2].map((step) => (
+              <span className={progress > step ? "age-progress-dot-active" : ""} key={step} />
+            ))}
+          </div>
+
+          <button
+            className="button-gold min-h-12 px-5 text-sm font-black uppercase text-[#07140d] disabled:cursor-not-allowed disabled:opacity-45"
+            disabled={!canSubmit}
           >
-            Date of birth
-          </label>
-          <input
-            className="min-h-12 border border-white/20 bg-white/[0.08] px-4 text-[#fff8e8]"
-            id="birthdate"
-            max={today}
-            name="birthdate"
-            required
-            type="date"
-          />
-          <button className="button-gold min-h-12 px-5 text-sm font-black uppercase text-[#07140d]">
             Enter Site
           </button>
           <p aria-live="polite" className="min-h-6 text-center text-sm font-bold text-[#ffd4cf]">

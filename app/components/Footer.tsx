@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footerLinks, site } from "../lib/site-content";
-import { RastaDivider } from "./RastaDivider";
 
 export function Footer() {
   return (
@@ -24,7 +23,6 @@ export function Footer() {
         </div>
 
         <div>
-          <RastaDivider className="mb-7 max-w-xl opacity-55" />
           <p className="max-w-3xl text-sm leading-7">
             Adults 21+ only. Sista Rootz is coming soon with expected opening in{" "}
             {site.opening}. This website is under construction and for
@@ -42,7 +40,11 @@ export function Footer() {
 
         <nav aria-label="Footer navigation" className="grid gap-2 text-sm">
           {footerLinks.map((item) => (
-            <Link className="transition hover:text-[#f4c84a]" href={item.href} key={item.href}>
+            <Link
+              className="transition hover:text-[#f4c84a]"
+              href={item.href}
+              key={`${item.href}-${item.label}`}
+            >
               {item.label}
             </Link>
           ))}
