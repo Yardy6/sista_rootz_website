@@ -11,8 +11,8 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <header className="site-header absolute inset-x-0 top-0 z-40 text-[#fff8e8]">
-      <div className="header-main px-4 py-4 sm:px-6 lg:px-8 lg:py-5 2xl:px-10">
-        <div className="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between gap-4 lg:h-20 xl:gap-8 2xl:h-24">
+      <div className="header-main px-4 py-4 sm:px-6 lg:px-10 lg:py-5 2xl:px-14">
+        <div className="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between gap-4 lg:h-20 xl:gap-9 2xl:h-24 2xl:gap-12">
           <Link
             aria-label="Sista Rootz home"
             className="header-logo-crop relative z-10 inline-flex w-fit items-center"
@@ -31,7 +31,7 @@ export function Header() {
 
           <nav
             aria-label="Main navigation"
-            className="header-nav hidden items-center gap-1 text-xs font-bold uppercase text-[#fff8e8]/75 lg:flex xl:gap-2 xl:text-sm 2xl:gap-3 2xl:text-[0.95rem]"
+            className="header-nav hidden items-center gap-1 text-xs font-bold uppercase tracking-wide text-[#fff8e8]/75 lg:flex lg:text-sm xl:gap-2 2xl:gap-3 2xl:text-base"
           >
             {navItems.map((item) => {
               const isActive =

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const storageKey = "sistaRootzAgeVerified";
 const ageVerifiedEvent = "sista-rootz-age-verified";
+const alphaVideoSrc = "/videos/sista-rootz-logo-animation-alpha.webm";
 const videoSrc = "/videos/sista-rootz-logo-animation.mp4";
 const staticLogoSrc = "/images/sista-rootz-logo-transparent.png";
 const scrollRangeMultiplier = 1;
@@ -155,7 +156,7 @@ export function ScrollLogoAnimation() {
   }
 
   return (
-    <div className="scroll-logo-animation-frame scroll-logo-animation-frame-fixed">
+    <div className="scroll-logo-animation-frame">
       <video
         aria-label="Animated Sista Rootz Spiritual and Wellness Center logo"
         className="scroll-logo-animation-media scroll-logo-animation-video"
@@ -165,8 +166,10 @@ export function ScrollLogoAnimation() {
         playsInline
         preload="auto"
         ref={videoRef}
-        src={videoSrc}
-      />
+      >
+        <source src={alphaVideoSrc} type="video/webm" />
+        <source src={videoSrc} type="video/mp4" />
+      </video>
     </div>
   );
 }

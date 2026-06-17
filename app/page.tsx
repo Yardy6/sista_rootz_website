@@ -22,18 +22,18 @@ function ArrowIcon() {
 export default function Home() {
   return (
     <main>
-      <section className="home-hero relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pb-10 pt-24 text-[#fff8e8] sm:px-8 lg:px-10 lg:pt-28 xl:pt-32 2xl:px-12">
+      <section className="home-hero relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pb-[clamp(2rem,6svh,5rem)] pt-24 text-[#fff8e8] sm:px-8 lg:px-10 lg:pt-28 xl:px-12 xl:pt-32 2xl:px-14 2xl:pt-36 min-[1800px]:pt-40">
         <div className="home-hero-image" aria-hidden="true" />
         <div className="home-hero-shade" aria-hidden="true" />
 
-        <div className="home-hero-sticky relative z-10 mx-auto flex min-h-[calc(100svh-6rem)] w-full max-w-[1600px] flex-col items-center justify-center">
-          <div />
+        <div className="home-hero-sticky relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] w-full max-w-7xl flex-col items-center justify-center pb-[clamp(1.25rem,4svh,4rem)] text-center lg:min-h-[calc(100svh-8rem)] xl:max-w-[1500px] 2xl:min-h-[calc(100svh-9rem)] 2xl:max-w-[1600px]">
+          <div aria-hidden="true" />
 
-          <div className="home-hero-brand mx-auto flex w-full max-w-[1100px] flex-col items-center justify-center text-center min-[1800px]:max-w-[1240px]">
+          <div className="home-hero-brand mx-auto flex w-full max-w-[1180px] flex-col items-center justify-center text-center min-[1800px]:max-w-[1360px]">
             <div className="home-logo-intro scroll-logo-animation">
               <ScrollLogoAnimation />
             </div>
-            <p className="mt-[clamp(1.25rem,2.2vw,2.35rem)] text-[clamp(0.78rem,0.9vw,1.05rem)] font-bold uppercase text-white/80">
+            <p className="mt-[clamp(1.1rem,1.8vw,2.45rem)] text-[clamp(0.78rem,0.84vw,1.12rem)] font-bold uppercase text-white/80">
               Rooted in culture · Growing with purpose
             </p>
           </div>
