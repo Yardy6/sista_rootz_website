@@ -34,10 +34,10 @@ export function ProductCategoryCard({
       <div className="flex items-center justify-end text-[10px] font-black uppercase text-white/70">
         <span>Preview only</span>
       </div>
-      <div className="mt-auto">
+      <div className="mt-auto min-w-0">
         <h3
-          className={`font-display font-bold leading-[0.82] ${
-            isFeature ? "text-7xl md:text-8xl" : "text-5xl"
+          className={`category-card-title ${
+            isFeature ? "category-card-title-feature" : "category-card-title-compact"
           }`}
         >
           {name}

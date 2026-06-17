@@ -132,7 +132,7 @@ export function ProductCategoryCarousel() {
               role={!isActive ? "button" : undefined}
               style={{
                 opacity: Math.abs(offset) > 1 ? 0 : isActive ? 1 : 0.72,
-                transform: `translateX(${offset * 82}%) scale(${isActive ? 1 : 0.78})`,
+                transform: `translateX(${offset * 145}%) scale(${isActive ? 1 : 0.78})`,
                 zIndex: 10 - Math.abs(offset)
               }}
               tabIndex={!isActive && Math.abs(offset) === 1 ? 0 : -1}
