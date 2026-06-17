@@ -137,7 +137,7 @@ export default function Home() {
             className="button-gold mt-8 inline-flex min-h-12 items-center gap-2 px-6 text-sm font-black uppercase text-[#07140d]"
             href="/contact"
           >
-            Contact / Vendor Inquiry <ArrowIcon />
+            Contact / Inquiry <ArrowIcon />
           </Link>
         </div>
       </Section>

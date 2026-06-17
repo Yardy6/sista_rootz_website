@@ -8,7 +8,7 @@ export default function ContactPage() {
     <main>
       <PageHero
         copy="Contact details and placeholder inquiry fields for customers, partners, and vendors while opening plans are finalized. Forms are not connected to a backend yet."
-        note="Vendor Inquiry"
+        note="Inquiry"
         title="Connect with Sista Rootz."
       />
 
@@ -63,7 +63,7 @@ export default function ContactPage() {
               Placeholder Form
             </p>
             <h2 className="font-display text-5xl font-bold leading-none">
-              Vendor inquiry
+              Inquiry
             </h2>
             <p className="mt-5 leading-8 text-[#fff8e8]/70">
               These fields are placeholders for layout and review only. They are

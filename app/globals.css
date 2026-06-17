@@ -23,7 +23,6 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  counter-reset: site-section;
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
 }
 
@@ -70,6 +69,7 @@ textarea:focus-visible,
 }
 
 .header-logo-image {
+  display: block;
   width: 100%;
   height: 100%;
   max-width: none;
@@ -97,10 +97,10 @@ textarea:focus-visible,
   z-index: -1;
   width: 100%;
   height: 82px;
-  background: url("/images/rasta-vine-divider.png") center / 100% 100% no-repeat;
+  background: url("/images/rasta-vine-divider-nav.png") center / auto 100% repeat-x;
   content: "";
-  filter: blur(0.45px);
-  opacity: 0.2;
+  filter: none;
+  opacity: 0.3;
   pointer-events: none;
   transform: translateY(-50%);
 }
@@ -176,15 +176,8 @@ textarea:focus-visible,
 .page-hero-surface::before,
 .greenhouse-surface::before,
 .urban-dark-surface::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, transparent 0 10%, rgba(20, 139, 80, 0.18) 10% 10.15%, transparent 10.15% 54%, rgba(244, 200, 74, 0.12) 54% 54.15%, transparent 54.15% 100%),
-    repeating-linear-gradient(0deg, transparent 0 84px, rgba(255, 248, 232, 0.035) 84px 85px);
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 88%);
-  z-index: 1;
+  content: none;
+  display: none;
 }
 
 .home-hero-image {
@@ -391,36 +384,32 @@ textarea:focus-visible,
   position: relative;
   overflow: hidden;
   justify-content: center;
-  border: 1px solid transparent;
+  border: 1px solid rgba(244, 200, 74, 0.72);
+  background: #f4c84a;
+  color: #07140d !important;
   transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
 }
 
-.button-primary {
-  background: #0d351f;
-}
-
-.button-primary:hover {
-  background: #148b50;
-  transform: translateY(-2px);
-}
-
-.button-gold {
-  background: #f4c84a;
-}
-
-.button-gold:hover {
-  background: #ffdc60;
-  transform: translateY(-2px);
-}
-
-.button-outline {
-  border-color: rgba(244, 200, 74, 0.4);
-}
-
+.button-primary:hover,
+.button-gold:hover,
 .button-outline:hover {
-  border-color: #f4c84a;
-  background: rgba(244, 200, 74, 0.08);
+  border-color: #ffdc60;
+  background: #ffdc60;
+  color: #07140d !important;
   transform: translateY(-2px);
+}
+
+.button-primary:disabled,
+.button-gold:disabled,
+.button-outline:disabled {
+  background: #f4c84a;
+  color: #07140d !important;
+}
+
+.button-primary svg,
+.button-gold svg,
+.button-outline svg {
+  color: currentColor;
 }
 
 .page-hero-surface {
@@ -469,8 +458,7 @@ textarea:focus-visible,
 
 .warm-street-surface {
   background:
-    linear-gradient(120deg, rgba(255, 248, 232, 0.85), rgba(232, 220, 197, 0.96)),
-    repeating-linear-gradient(135deg, rgba(21, 18, 13, 0.04) 0 1px, transparent 1px 32px);
+    linear-gradient(120deg, rgba(255, 248, 232, 0.85), rgba(232, 220, 197, 0.96));
 }
 
 .gold-surface {
@@ -482,8 +470,7 @@ textarea:focus-visible,
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(120deg, rgba(7, 8, 6, 1), rgba(10, 27, 16, 0.98) 56%, rgba(48, 16, 13, 0.98)),
-    repeating-linear-gradient(120deg, rgba(244, 200, 74, 0.045) 0 1px, transparent 1px 30px);
+    linear-gradient(120deg, rgba(7, 8, 6, 1), rgba(10, 27, 16, 0.98) 56%, rgba(48, 16, 13, 0.98));
 }
 
 .greenhouse-surface {
@@ -567,20 +554,12 @@ textarea:focus-visible,
 
 .scroll-section {
   position: relative;
-  counter-increment: site-section;
   overflow: hidden;
 }
 
 .scroll-section::after {
-  content: "0" counter(site-section);
-  position: absolute;
-  top: 1.4rem;
-  right: 1.4rem;
-  font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 1;
-  opacity: 0.04;
-  pointer-events: none;
+  content: none;
+  display: none;
 }
 
 .scroll-section + .scroll-section {
@@ -713,11 +692,8 @@ textarea:focus-visible,
 }
 
 .category-card-color::before {
-  inset: 0;
-  background:
-    linear-gradient(105deg, transparent 44%, rgba(244, 200, 74, 0.26) 44% 47%, transparent 47%),
-    linear-gradient(75deg, transparent 63%, rgba(217, 75, 61, 0.2) 63% 67%, transparent 67%);
-  opacity: 0.8;
+  content: none;
+  display: none;
 }
 
 .category-card-color::after {
@@ -774,6 +750,15 @@ textarea:focus-visible,
 
 .category-slide:not(.category-slide-active):hover {
   opacity: 0.82 !important;
+}
+
+.category-slide.category-slide[aria-hidden="true"] {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.category-slide.category-slide[aria-hidden="true"]:hover {
+  opacity: 0 !important;
 }
 
 .category-slide:not(.category-slide-active):focus-visible {
@@ -867,7 +852,7 @@ textarea:focus-visible,
     left: 0;
     width: 100%;
     height: 64px;
-    opacity: 0.18;
+    opacity: 0.28;
   }
 
   .page-hero-surface {

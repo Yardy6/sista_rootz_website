@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 type ProductCategoryCardProps = {
   accent?: string;
   copy: string;
-  index: number;
+  index?: number;
   name: string;
   shortCopy?: string;
   variant?: "compact" | "feature";
@@ -12,7 +12,6 @@ type ProductCategoryCardProps = {
 export function ProductCategoryCard({
   accent = "#148b50",
   copy,
-  index,
   name,
   shortCopy,
   variant = "compact"
@@ -32,8 +31,7 @@ export function ProductCategoryCard({
     >
       <div className="category-card-color" aria-hidden="true" />
       <div className="category-card-shade" aria-hidden="true" />
-      <div className="flex items-center justify-between text-[10px] font-black uppercase text-white/70">
-        <span>{String(index + 1).padStart(2, "0")}</span>
+      <div className="flex items-center justify-end text-[10px] font-black uppercase text-white/70">
         <span>Preview only</span>
       </div>
       <div className="mt-auto">
