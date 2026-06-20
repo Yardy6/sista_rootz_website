@@ -269,7 +269,7 @@ textarea:focus-visible,
     transparent 0 2.6%,
     #000 3.6%
   );
-  mix-blend-mode: normal;
+  mix-blend-mode: screen;
 }
 
 @media (min-width: 768px) {
