@@ -272,9 +272,25 @@ textarea:focus-visible,
   mix-blend-mode: normal;
 }
 
+.scroll-logo-animation-canvas {
+  display: none;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: transparent;
+}
+
 @media (max-width: 1023px) {
   .scroll-logo-animation-video {
-    mix-blend-mode: screen;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .scroll-logo-animation-canvas {
+    display: block;
   }
 }
 
