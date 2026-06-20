@@ -122,9 +122,36 @@ export function ScrollLogoAnimation() {
 
       const alphaFrame = maskContext.getImageData(0, 0, width, height);
       const alphaPixels = alphaFrame.data;
+      const cornerIndexes = [
+        0,
+        (width - 1) * 4,
+        (height - 1) * width * 4,
+        (width * height - 1) * 4
+      ];
+      const blackLevel = Math.round(
+        cornerIndexes.reduce(
+          (total, index) => total + alphaPixels[index],
+          0
+        ) / cornerIndexes.length
+      );
+      const usesVideoRange = blackLevel >= 8;
+      const whiteLevel = 235;
 
       for (let index = 0; index < alphaPixels.length; index += 4) {
-        alphaPixels[index + 3] = alphaPixels[index];
+        const alpha = alphaPixels[index];
+
+        alphaPixels[index + 3] = usesVideoRange
+          ? Math.max(
+              0,
+              Math.min(
+                255,
+                Math.round(
+                  ((alpha - blackLevel) * 255) /
+                    Math.max(1, whiteLevel - blackLevel)
+                )
+              )
+            )
+          : alpha;
       }
 
       maskContext.putImageData(alphaFrame, 0, 0);

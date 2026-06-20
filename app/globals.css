@@ -281,10 +281,17 @@ textarea:focus-visible,
 }
 
 @media (max-width: 1023px) {
+  .scroll-logo-animation-frame {
+    overflow: hidden;
+  }
+
   .scroll-logo-animation-video {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    max-width: none;
+    height: 360px;
     opacity: 0;
     pointer-events: none;
   }
