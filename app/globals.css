@@ -77,6 +77,7 @@ textarea:focus-visible,
 }
 
 .site-header {
+  position: absolute;
   isolation: isolate;
   pointer-events: none;
 }
@@ -97,7 +98,7 @@ textarea:focus-visible,
   z-index: -1;
   width: 100%;
   height: 82px;
-  background: url("/images/rasta-vine-divider-nav.png") center / auto 100% repeat-x;
+  background: var(--asset-nav-vine) center / auto 100% repeat-x;
   content: "";
   filter: none;
   opacity: 0.3;
@@ -161,6 +162,31 @@ textarea:focus-visible,
   backdrop-filter: blur(12px);
 }
 
+@media (max-width: 1023px) {
+  .site-header {
+    position: fixed;
+    transform: translateY(0);
+    transition: transform 220ms ease;
+    will-change: transform;
+  }
+
+  .site-header.mobile-header-hidden {
+    transform: translateY(-100%);
+  }
+
+  .site-header[data-scrolled="true"] .header-main {
+    background: rgba(3, 7, 4, 0.94);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
+}
+
 .home-hero {
   min-height: 100svh;
   background: #071009;
@@ -182,7 +208,7 @@ textarea:focus-visible,
 .home-hero-image {
   position: absolute;
   inset: 0;
-  background: url("/images/cannabis-greenhouse-hero.jpg") center / cover no-repeat;
+  background: var(--asset-home-hero) center / cover no-repeat;
   filter: none;
   transform: none;
 }
@@ -191,8 +217,8 @@ textarea:focus-visible,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(3, 7, 4, 0.64) 0%, rgba(4, 10, 6, 0.42) 42%, rgba(3, 7, 4, 0.72) 100%),
-    linear-gradient(90deg, rgba(4, 9, 5, 0.5), rgba(4, 9, 5, 0.28), rgba(4, 9, 5, 0.5));
+    linear-gradient(180deg, rgba(3, 7, 4, 0.6) 0%, rgba(4, 10, 6, 0.3) 44%, rgba(3, 7, 4, 0.74) 100%),
+    radial-gradient(ellipse at 50% 50%, rgba(4, 9, 5, 0.12) 0%, rgba(4, 9, 5, 0.38) 72%, rgba(4, 9, 5, 0.58) 100%);
 }
 
 .home-hero-logo {
@@ -233,6 +259,16 @@ textarea:focus-visible,
 
 .scroll-logo-animation-video {
   background: transparent;
+  -webkit-mask-image: radial-gradient(
+    circle at 91% 84.5%,
+    transparent 0 2.6%,
+    #000 3.6%
+  );
+  mask-image: radial-gradient(
+    circle at 91% 84.5%,
+    transparent 0 2.6%,
+    #000 3.6%
+  );
   mix-blend-mode: normal;
 }
 
@@ -365,6 +401,17 @@ textarea:focus-visible,
   color-scheme: dark;
 }
 
+.age-field select option {
+  background: #fff8e8;
+  color: #15120d;
+  font-weight: 700;
+}
+
+.age-field select option:checked {
+  background: #f4c84a;
+  color: #07140d;
+}
+
 .age-field input:focus,
 .age-field select:focus {
   border-color: #f4c84a;
@@ -459,18 +506,41 @@ textarea:focus-visible,
 
 .page-hero-image {
   position: absolute;
-  inset: -18px;
-  background: url("/images/cannabis-greenhouse-hero.jpg") center 44% / cover no-repeat;
-  filter: blur(4px);
-  transform: scale(1.025);
+  inset: 0;
+  background: var(--asset-home-hero) center / cover no-repeat;
+  filter: none;
+  transform: none;
+}
+
+.page-hero-about .page-hero-image {
+  background-image: var(--asset-about-hero);
+  background-position: center;
+}
+
+.page-hero-buyers .page-hero-image {
+  background-image: var(--asset-buyers-hero);
+  background-position: center;
+}
+
+.page-hero-menu .page-hero-image {
+  background-image: var(--asset-menu-preview);
+  background-position: center;
 }
 
 .page-hero-shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(3, 8, 4, 0.68), rgba(3, 8, 4, 0.94)),
-    linear-gradient(90deg, rgba(4, 10, 6, 0.2), rgba(4, 10, 6, 0.56));
+    linear-gradient(180deg, rgba(3, 8, 4, 0.54), rgba(3, 8, 4, 0.91)),
+    linear-gradient(90deg, rgba(4, 10, 6, 0.2), rgba(4, 10, 6, 0.5));
+}
+
+.page-hero-about .page-hero-shade,
+.page-hero-buyers .page-hero-shade,
+.page-hero-menu .page-hero-shade {
+  background:
+    linear-gradient(180deg, rgba(3, 7, 4, 0.28), rgba(3, 7, 4, 0.78)),
+    linear-gradient(90deg, rgba(3, 7, 4, 0.93) 0%, rgba(3, 7, 4, 0.68) 48%, rgba(3, 7, 4, 0.18) 100%);
 }
 
 .page-hero-note,
@@ -524,7 +594,7 @@ textarea:focus-visible,
   inset: -18px;
   background:
     linear-gradient(120deg, rgba(4, 10, 6, 0.88), rgba(9, 37, 21, 0.84)),
-    url("/images/cannabis-greenhouse-hero.jpg") center / cover no-repeat;
+    var(--asset-greenhouse-hero) center / cover no-repeat;
   filter: blur(4px);
   transform: scale(1.025);
 }
@@ -710,9 +780,22 @@ textarea:focus-visible,
 }
 
 .category-card-color,
+.category-card-image,
 .category-card-shade {
   position: absolute;
   inset: 0;
+}
+
+.category-card-image {
+  z-index: 0;
+  background: var(--asset-menu-preview) 72% center / cover no-repeat;
+  filter: saturate(0.92) contrast(1.04);
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.category-card-image + .category-card-color {
+  opacity: 0.38;
+  mix-blend-mode: color;
 }
 
 .category-card-color {
@@ -754,6 +837,10 @@ textarea:focus-visible,
 
 .category-card:hover .category-card-color {
   transform: scale(1.065);
+}
+
+.category-card:hover .category-card-image {
+  transform: scale(1.035);
 }
 
 .category-card-title {
@@ -925,6 +1012,20 @@ textarea:focus-visible,
 
   .page-hero-surface > .relative {
     min-height: auto;
+  }
+
+  .page-hero-about .page-hero-image,
+  .page-hero-buyers .page-hero-image,
+  .page-hero-menu .page-hero-image {
+    background-position: 68% center;
+  }
+
+  .page-hero-about .page-hero-shade,
+  .page-hero-buyers .page-hero-shade,
+  .page-hero-menu .page-hero-shade {
+    background:
+      linear-gradient(180deg, rgba(3, 7, 4, 0.42), rgba(3, 7, 4, 0.9)),
+      linear-gradient(90deg, rgba(3, 7, 4, 0.9), rgba(3, 7, 4, 0.42));
   }
 
   .category-stage {

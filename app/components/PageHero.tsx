@@ -4,11 +4,14 @@ type PageHeroProps = {
   title: string;
   copy: string;
   note?: string;
+  visual?: "about" | "buyers" | "default" | "menu";
 };
 
-export function PageHero({ title, copy, note }: PageHeroProps) {
+export function PageHero({ title, copy, note, visual = "default" }: PageHeroProps) {
   return (
-    <section className="page-hero-surface px-5 pb-16 pt-40 text-[#fff8e8] lg:px-8 lg:pb-24 lg:pt-48">
+    <section
+      className={`page-hero-surface page-hero-${visual} px-5 pb-16 pt-40 text-[#fff8e8] lg:px-8 lg:pb-24 lg:pt-48`}
+    >
       <div className="page-hero-image" aria-hidden="true" />
       <div className="page-hero-shade" aria-hidden="true" />
       <div className="relative z-10 mx-auto grid min-h-[48svh] max-w-7xl gap-10 lg:grid-cols-[1fr_0.38fr] lg:items-end">

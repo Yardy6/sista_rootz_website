@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { assetPath } from "../lib/asset-path";
 
 const storageKey = "sistaRootzAgeVerified";
 const ageVerifiedEvent = "sista-rootz-age-verified";
@@ -115,7 +116,7 @@ export function AgeGate() {
           className="mx-auto mb-6 h-auto max-h-52 w-full max-w-72 object-contain"
           height={635}
           priority
-          src="/images/sista-rootz-logo-transparent.png"
+          src={assetPath("/images/sista-rootz-logo-transparent.png")}
           width={800}
         />
         <p className="font-display text-4xl font-bold uppercase text-[#f4c84a]">

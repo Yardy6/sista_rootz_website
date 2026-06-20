@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "../lib/asset-path";
 
 export function RastaDivider({ className = "" }: { className?: string }) {
   return (
@@ -7,7 +8,7 @@ export function RastaDivider({ className = "" }: { className?: string }) {
       aria-hidden="true"
       className={`rasta-divider h-auto w-full object-contain ${className}`}
       height={200}
-      src="/images/rasta-vine-divider.png"
+      src={assetPath("/images/rasta-vine-divider.png")}
       width={2043}
     />
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { PageHero } from "../components/PageHero";
 import { RootLine } from "../components/RootLine";
 import { Section, SectionLabel } from "../components/Section";
+import { assetPath } from "../lib/asset-path";
 
 const pillars = [
   {
@@ -33,6 +34,7 @@ export default function AboutPage() {
         copy="Sista Rootz honors the late Sista Ruth while preparing a future cannabis dispensary experience centered on Rastafarian culture, natural living, spirituality, wellness education, community, and premium quality."
         note="Honor + Roots"
         title="Honoring Sista Ruth with a future rooted in purpose."
+        visual="about"
       />
 
       <Section tone="gold">
@@ -42,7 +44,7 @@ export default function AboutPage() {
               alt="Sista Rootz brand artwork"
               className="brand-artwork border border-black/10 shadow-2xl"
               height={1200}
-              src="/images/brand-book-cover.png"
+              src={assetPath("/images/brand-book-cover.png")}
               width={927}
             />
             <div className="brand-gradient absolute -bottom-3 left-5 right-5 h-1" />

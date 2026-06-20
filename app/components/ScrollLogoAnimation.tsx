@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { assetPath } from "../lib/asset-path";
 
 const storageKey = "sistaRootzAgeVerified";
 const ageVerifiedEvent = "sista-rootz-age-verified";
-const alphaVideoSrc = "/videos/sista-rootz-logo-animation-alpha.webm";
-const videoSrc = "/videos/sista-rootz-logo-animation.mp4";
-const staticLogoSrc = "/images/sista-rootz-logo-transparent.png";
+const alphaVideoSrc = assetPath("/videos/sista-rootz-logo-animation-alpha.webm");
+const videoSrc = assetPath("/videos/sista-rootz-logo-animation.mp4");
+const staticLogoSrc = assetPath("/images/sista-rootz-logo-transparent.png");
 const scrollRangeMultiplier = 1;
 
 function clamp(value: number, min: number, max: number) {

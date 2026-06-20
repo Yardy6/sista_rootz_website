@@ -9,6 +9,7 @@ export default function MenuShopPage() {
         copy="Explore the expected Sista Rootz product categories through a modern preview carousel. This page is informational only and does not represent live inventory, online ordering, pricing, checkout, carts, or products available for purchase today."
         note="Preview Only"
         title="Menu / Shop is a coming-soon category preview."
+        visual="menu"
       />
 
       <Section tone="warm">

@@ -7,6 +7,7 @@ type ProductCategoryCardProps = {
   name: string;
   shortCopy?: string;
   variant?: "compact" | "feature";
+  visual?: boolean;
 };
 
 export function ProductCategoryCard({
@@ -14,7 +15,8 @@ export function ProductCategoryCard({
   copy,
   name,
   shortCopy,
-  variant = "compact"
+  variant = "compact",
+  visual = false
 }: ProductCategoryCardProps) {
   const isFeature = variant === "feature";
 
@@ -29,6 +31,7 @@ export function ProductCategoryCard({
         } as CSSProperties & Record<"--category-accent", string>
       }
     >
+      {visual ? <div className="category-card-image" aria-hidden="true" /> : null}
       <div className="category-card-color" aria-hidden="true" />
       <div className="category-card-shade" aria-hidden="true" />
       <div className="flex items-center justify-end text-[10px] font-black uppercase text-white/70">

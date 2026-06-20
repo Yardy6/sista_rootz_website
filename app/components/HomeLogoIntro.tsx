@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import { assetPath } from "../lib/asset-path";
 
 const storageKey = "sistaRootzAgeVerified";
 const logoIntroKey = "sistaRootzLogoIntroPlayed";
@@ -316,14 +317,14 @@ export function HomeLogoIntro() {
           playsInline
           preload="auto"
           ref={videoRef}
-          src="/images/sista-rootz-logo-animation.mov"
+          src={assetPath("/images/sista-rootz-logo-animation.mov")}
         />
         <img
           alt=""
           aria-hidden="true"
           className="home-logo-still"
           ref={stillRef}
-          src="/images/sista-rootz-logo-transparent.png"
+          src={assetPath("/images/sista-rootz-logo-transparent.png")}
         />
         <canvas
           aria-label="Animated Sista Rootz logo"

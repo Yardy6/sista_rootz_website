@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { assetPath } from "../lib/asset-path";
 import { footerLinks, site } from "../lib/site-content";
 
 export function Footer() {
@@ -11,7 +12,7 @@ export function Footer() {
             alt="Sista Rootz Spiritual and Wellness Center"
             className="h-auto w-44 object-contain"
             height={635}
-            src="/images/sista-rootz-logo-transparent.png"
+            src={assetPath("/images/sista-rootz-logo-transparent.png")}
               width={800}
           />
           <p className="mt-4 text-sm">Business/legal name: {site.legalName}</p>

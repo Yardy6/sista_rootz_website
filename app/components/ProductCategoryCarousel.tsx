@@ -144,6 +144,7 @@ export function ProductCategoryCarousel() {
                 name={category.name}
                 shortCopy={category.shortCopy}
                 variant={isActive ? "feature" : "compact"}
+                visual
               />
             </div>
           );

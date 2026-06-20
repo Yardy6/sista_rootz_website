@@ -26,6 +26,7 @@ export default function FirstTimeBuyersPage() {
         copy="A welcoming guide for adults who may be new to dispensaries, Rastafarian-inspired wellness, product education, and responsible cannabis use. The store is not open yet, and products are not currently for sale online."
         note="Adults 21+"
         title="First Time Buyers can learn before the doors open."
+        visual="buyers"
       />
 
       <Section tone="gold">
@@ -90,6 +91,7 @@ export default function FirstTimeBuyersPage() {
               key={category.name}
               name={category.name}
               shortCopy={category.shortCopy}
+              visual
             />
           ))}
         </div>

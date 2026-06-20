@@ -3,14 +3,89 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { assetPath } from "../lib/asset-path";
 import { navItems } from "../lib/site-content";
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isOpenRef = useRef(false);
+  const lastScrollYRef = useRef(0);
+  const scrollFrameRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+
+    if (isOpen) {
+      setIsHeaderVisible(true);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 1023px)");
+
+    const updateHeader = () => {
+      scrollFrameRef.current = null;
+
+      if (!mobileQuery.matches) {
+        setIsHeaderVisible(true);
+        setIsScrolled(false);
+        lastScrollYRef.current = window.scrollY;
+        return;
+      }
+
+      const currentScrollY = Math.max(window.scrollY, 0);
+      const scrollDelta = currentScrollY - lastScrollYRef.current;
+
+      setIsScrolled(currentScrollY > 24);
+
+      if (isOpenRef.current || currentScrollY <= 24 || scrollDelta < -6) {
+        setIsHeaderVisible(true);
+      } else if (scrollDelta > 6 && currentScrollY > 96) {
+        setIsHeaderVisible(false);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    const requestHeaderUpdate = () => {
+      if (scrollFrameRef.current !== null) {
+        return;
+      }
+
+      scrollFrameRef.current = window.requestAnimationFrame(updateHeader);
+    };
+
+    lastScrollYRef.current = Math.max(window.scrollY, 0);
+    updateHeader();
+    window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
+    mobileQuery.addEventListener("change", requestHeaderUpdate);
+
+    return () => {
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current);
+      }
+
+      window.removeEventListener("scroll", requestHeaderUpdate);
+      mobileQuery.removeEventListener("change", requestHeaderUpdate);
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(false);
+    setIsHeaderVisible(true);
+  }, [pathname]);
+
   return (
-    <header className="site-header absolute inset-x-0 top-0 z-40 text-[#fff8e8]">
+    <header
+      className={`site-header inset-x-0 top-0 z-40 text-[#fff8e8] ${
+        isHeaderVisible ? "mobile-header-visible" : "mobile-header-hidden"
+      }`}
+      data-scrolled={isScrolled}
+    >
       <div className="header-main px-4 py-4 sm:px-6 lg:px-10 lg:py-5 2xl:px-14">
         <div className="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between gap-4 lg:h-20 xl:gap-9 2xl:h-24 2xl:gap-12">
           <Link
@@ -24,7 +99,7 @@ export function Header() {
               className="header-logo-image object-contain"
               height={579}
               priority
-              src="/images/sista-rootz-logo-top-left.png"
+              src={assetPath("/images/sista-rootz-logo-top-left.png")}
               width={836}
             />
           </Link>

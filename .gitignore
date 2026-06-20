@@ -4,3 +4,7 @@ node_modules
 out
 *.log
 *.pdf
+.codex-work
+.npm-cache
+.tools
+*.tsbuildinfo

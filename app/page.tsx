@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ProductCategoryCard } from "./components/ProductCategoryCard";
 import { ScrollLogoAnimation } from "./components/ScrollLogoAnimation";
 import { Section, SectionLabel } from "./components/Section";
+import { assetPath } from "./lib/asset-path";
 import { productCategories } from "./lib/site-content";
 
 function ArrowIcon() {
@@ -102,7 +103,7 @@ export default function Home() {
             alt="Sista Rootz brand artwork"
             className="h-auto w-full border border-black/10 object-contain shadow-xl"
             height={1200}
-            src="/images/brand-book-cover.png"
+            src={assetPath("/images/brand-book-cover.png")}
             width={927}
           />
           <div>
