@@ -55,17 +55,9 @@ export function HomeLogoIntro() {
   const renderFrame = useCallback(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
-    const shell = shellRef.current;
     const still = stillRef.current;
 
-    if (
-      !video ||
-      !canvas ||
-      !shell ||
-      !still ||
-      video.readyState < 2 ||
-      !still.complete
-    ) {
+    if (!video || !canvas || !still || video.readyState < 2 || !still.complete) {
       return;
     }
 
@@ -77,14 +69,8 @@ export function HomeLogoIntro() {
     const cropY = Math.round(videoCrop.y * cropScaleY);
     const cropWidth = Math.round(videoCrop.width * cropScaleX);
     const cropHeight = Math.round(videoCrop.height * cropScaleY);
-    const naturalWidth = still.naturalWidth || 800;
-    const naturalHeight = still.naturalHeight || 635;
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
-    const width = Math.min(
-      naturalWidth,
-      Math.max(Math.round(shell.clientWidth * pixelRatio), 320)
-    );
-    const height = Math.round((width * naturalHeight) / naturalWidth);
+    const width = still.naturalWidth || 800;
+    const height = still.naturalHeight || 635;
 
     if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
@@ -331,16 +317,8 @@ export function HomeLogoIntro() {
           playsInline
           preload="auto"
           ref={videoRef}
-        >
-          <source
-            src={assetPath("/videos/sista-rootz-logo-animation-alpha.webm")}
-            type="video/webm"
-          />
-          <source
-            src={assetPath("/videos/sista-rootz-logo-animation.mp4")}
-            type="video/mp4"
-          />
-        </video>
+          src={assetPath("/images/sista-rootz-logo-animation.mov")}
+        />
         <img
           alt=""
           aria-hidden="true"
