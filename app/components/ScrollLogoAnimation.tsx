@@ -216,7 +216,7 @@ export function ScrollLogoAnimation() {
       }
 
       window.sessionStorage.setItem(introPlayedKey, "true");
-      setShowStaticFallback(window.scrollY <= 2);
+      setShowStaticFallback(false);
       renderCanvasFrame();
       requestScrub();
     };
