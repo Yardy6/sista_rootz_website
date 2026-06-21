@@ -2689,8 +2689,8 @@ textarea:focus-visible,
   opacity: 1;
   pointer-events: none;
   position: relative;
-  transform: scale(0.5);
-  transition: opacity 160ms linear;
+  transform: scale(0.42);
+  transition: opacity 45ms linear;
   z-index: 1;
 }
 
