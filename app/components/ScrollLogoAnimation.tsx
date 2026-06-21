@@ -5,13 +5,11 @@ import { assetPath } from "../lib/asset-path";
 
 const storageKey = "sistaRootzAgeVerified";
 const ageVerifiedEvent = "sista-rootz-age-verified";
-const alphaVideoSrc = assetPath("/videos/sista-rootz-logo-animation-alpha.webm");
 const mobileAlphaVideoSrc = assetPath(
   "/videos/sista-rootz-logo-animation-mobile-alpha.mp4"
 );
-const videoSrc = assetPath("/videos/sista-rootz-logo-animation.mp4");
 const staticLogoSrc = assetPath("/images/sista-rootz-logo-transparent.png");
-const scrollRangeMultiplier = 1;
+const scrollRangeMultiplier = 0.7;
 const introPlayedKey = "sistaRootzScrollLogoIntroPlayed";
 
 function clamp(value: number, min: number, max: number) {
@@ -27,7 +25,6 @@ export function ScrollLogoAnimation() {
   const durationRef = useRef(0);
   const introCompleteRef = useRef(false);
   const introPlayingRef = useRef(false);
-  const isMobileRef = useRef(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [showStaticFallback, setShowStaticFallback] = useState(true);
 
@@ -43,17 +40,14 @@ export function ScrollLogoAnimation() {
 
   useEffect(() => {
     const video = videoRef.current;
-    const mobileQuery = window.matchMedia("(max-width: 1023px)");
-
     if (!video || reducedMotion) {
       return;
     }
 
-    const renderMobileFrame = () => {
+    const renderCanvasFrame = () => {
       const canvas = canvasRef.current;
 
       if (
-        !isMobileRef.current ||
         !canvas ||
         video.readyState < 2 ||
         video.videoWidth < 2
@@ -61,12 +55,12 @@ export function ScrollLogoAnimation() {
         return;
       }
 
-      const sourceWidth = video.videoWidth / 2;
+      const sourceWidth = Math.round(video.videoWidth / 2);
       const sourceHeight = video.videoHeight;
       const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = Math.min(
-        640,
-        Math.max(Math.round((canvas.clientWidth || 480) * pixelRatio), 320)
+        1280,
+        Math.max(Math.round((canvas.clientWidth || 640) * pixelRatio), 320)
       );
       const height = Math.round((width * sourceHeight) / sourceWidth);
 
@@ -163,14 +157,14 @@ export function ScrollLogoAnimation() {
     };
 
     const startRenderLoop = () => {
-      if (renderFrameRef.current !== null || !isMobileRef.current) {
+      if (renderFrameRef.current !== null) {
         return;
       }
 
       const draw = () => {
-        renderMobileFrame();
+        renderCanvasFrame();
 
-        if (introPlayingRef.current && isMobileRef.current) {
+        if (introPlayingRef.current) {
           renderFrameRef.current = window.requestAnimationFrame(draw);
         } else {
           renderFrameRef.current = null;
@@ -196,6 +190,8 @@ export function ScrollLogoAnimation() {
       } catch {
         // Some browsers can briefly reject seeks while video metadata settles.
       }
+
+      renderCanvasFrame();
     };
 
     const requestScrub = () => {
@@ -220,7 +216,8 @@ export function ScrollLogoAnimation() {
       }
 
       window.sessionStorage.setItem(introPlayedKey, "true");
-      setShowStaticFallback(false);
+      setShowStaticFallback(window.scrollY <= 2);
+      renderCanvasFrame();
       requestScrub();
     };
 
@@ -250,6 +247,7 @@ export function ScrollLogoAnimation() {
         }
 
         setShowStaticFallback(true);
+        renderCanvasFrame();
         requestScrub();
         return;
       }
@@ -263,7 +261,10 @@ export function ScrollLogoAnimation() {
       video.playbackRate = 1;
       video
         .play()
-        .then(startRenderLoop)
+        .then(() => {
+          setShowStaticFallback(false);
+          startRenderLoop();
+        })
         .catch(() => {
           finishIntro();
         });
@@ -275,17 +276,11 @@ export function ScrollLogoAnimation() {
       playIntro();
     };
 
-    const handleMobileChange = () => {
-      isMobileRef.current = mobileQuery.matches;
-      introCompleteRef.current = false;
-      introPlayingRef.current = false;
-      video.pause();
-      video.load();
-    };
-
     const handleScroll = () => {
       if (!introCompleteRef.current) {
-        return;
+        introCompleteRef.current = true;
+        introPlayingRef.current = false;
+        video.pause();
       }
 
       setShowStaticFallback(false);
@@ -297,7 +292,6 @@ export function ScrollLogoAnimation() {
     video.preload = "auto";
     video.loop = false;
     video.controls = false;
-    isMobileRef.current = mobileQuery.matches;
 
     if (video.readyState >= 1) {
       handleMetadata();
@@ -307,12 +301,11 @@ export function ScrollLogoAnimation() {
     }
 
     video.addEventListener("ended", finishIntro);
-    video.addEventListener("loadeddata", renderMobileFrame);
-    video.addEventListener("seeked", renderMobileFrame);
+    video.addEventListener("loadeddata", renderCanvasFrame);
+    video.addEventListener("seeked", renderCanvasFrame);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", requestScrub);
     window.addEventListener(ageVerifiedEvent, playIntro);
-    mobileQuery.addEventListener("change", handleMobileChange);
 
     return () => {
       if (animationFrameRef.current !== null) {
@@ -325,13 +318,12 @@ export function ScrollLogoAnimation() {
 
       video.pause();
       video.removeEventListener("ended", finishIntro);
-      video.removeEventListener("loadeddata", renderMobileFrame);
+      video.removeEventListener("loadeddata", renderCanvasFrame);
       video.removeEventListener("loadedmetadata", handleMetadata);
-      video.removeEventListener("seeked", renderMobileFrame);
+      video.removeEventListener("seeked", renderCanvasFrame);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", requestScrub);
       window.removeEventListener(ageVerifiedEvent, playIntro);
-      mobileQuery.removeEventListener("change", handleMobileChange);
     };
   }, [reducedMotion]);
 
@@ -371,21 +363,7 @@ export function ScrollLogoAnimation() {
         preload="auto"
         ref={videoRef}
       >
-        <source
-          media="(max-width: 1023px)"
-          src={mobileAlphaVideoSrc}
-          type="video/mp4"
-        />
-        <source
-          media="(min-width: 1024px)"
-          src={alphaVideoSrc}
-          type="video/webm"
-        />
-        <source
-          media="(min-width: 1024px)"
-          src={videoSrc}
-          type="video/mp4"
-        />
+        <source src={mobileAlphaVideoSrc} type="video/mp4" />
       </video>
       <canvas
         aria-label="Animated Sista Rootz Spiritual and Wellness Center logo"
