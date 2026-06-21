@@ -12,6 +12,7 @@ const mobileAlphaVideoSrc = assetPath(
 const videoSrc = assetPath("/videos/sista-rootz-logo-animation.mp4");
 const staticLogoSrc = assetPath("/images/sista-rootz-logo-transparent.png");
 const scrollRangeMultiplier = 1;
+const introPlayedKey = "sistaRootzScrollLogoIntroPlayed";
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
@@ -28,6 +29,7 @@ export function ScrollLogoAnimation() {
   const introPlayingRef = useRef(false);
   const isMobileRef = useRef(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [showStaticFallback, setShowStaticFallback] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -217,13 +219,42 @@ export function ScrollLogoAnimation() {
         video.currentTime = durationRef.current;
       }
 
+      window.sessionStorage.setItem(introPlayedKey, "true");
+      setShowStaticFallback(false);
       requestScrub();
     };
 
     const playIntro = () => {
       const verified = window.localStorage.getItem(storageKey) === "true";
 
-      if (!verified || introPlayingRef.current || introCompleteRef.current) {
+      if (!verified || introPlayingRef.current) {
+        return;
+      }
+
+      durationRef.current =
+        Number.isFinite(video.duration) && video.duration > 0
+          ? video.duration
+          : durationRef.current;
+
+      if (window.sessionStorage.getItem(introPlayedKey) === "true") {
+        introPlayingRef.current = false;
+        introCompleteRef.current = true;
+        video.pause();
+
+        if (durationRef.current > 0) {
+          try {
+            video.currentTime = durationRef.current;
+          } catch {
+            // Some browsers can briefly reject seeks while video metadata settles.
+          }
+        }
+
+        setShowStaticFallback(true);
+        requestScrub();
+        return;
+      }
+
+      if (introCompleteRef.current) {
         return;
       }
 
@@ -257,6 +288,7 @@ export function ScrollLogoAnimation() {
         return;
       }
 
+      setShowStaticFallback(false);
       requestScrub();
     };
 
@@ -316,7 +348,19 @@ export function ScrollLogoAnimation() {
   }
 
   return (
-    <div className="scroll-logo-animation-frame">
+    <div
+      className={`scroll-logo-animation-frame ${
+        showStaticFallback ? "scroll-logo-animation-frame-static" : ""
+      }`}
+    >
+      <img
+        alt=""
+        aria-hidden="true"
+        className={`scroll-logo-animation-static ${
+          showStaticFallback ? "" : "scroll-logo-animation-static-hidden"
+        }`}
+        src={staticLogoSrc}
+      />
       <video
         aria-label="Animated Sista Rootz Spiritual and Wellness Center logo"
         className="scroll-logo-animation-media scroll-logo-animation-video"
