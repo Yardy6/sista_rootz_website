@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - visual/subtle-rastafarian-polish
+      - point-of-sale-poc
   workflow_dispatch:
 
 permissions:
@@ -19,36 +20,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main site branch
         uses: actions/checkout@v4
+        with:
+          ref: visual/subtle-rastafarian-polish
+          path: root-site
+
+      - name: Checkout POS POC branch
+        uses: actions/checkout@v4
+        with:
+          ref: point-of-sale-poc
+          path: point-of-sale-poc-site
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          cache: npm
           node-version: 20
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Restore Next.js cache
-        uses: actions/cache@v4
-        with:
-          path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-${{ hashFiles('app/**/*.[jt]s', 'app/**/*.[jt]sx', 'next.config.mjs') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-
+      - name: Build main site
+        working-directory: root-site
+        run: |
+          npm ci
+          NEXT_PUBLIC_BASE_PATH=/sista_rootz_website npm run build
+          mkdir -p ../pages-artifact
+          cp -R out/. ../pages-artifact/
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build static site
-        run: npm run build
+      - name: Build POS POC site
+        working-directory: point-of-sale-poc-site
+        run: |
+          npm ci
+          NEXT_PUBLIC_BASE_PATH=/sista_rootz_website/point-of-sale-poc npm run build
+          mkdir -p ../pages-artifact/point-of-sale-poc
+          cp -R out/. ../pages-artifact/point-of-sale-poc/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./pages-artifact
 
   deploy:
     environment:
