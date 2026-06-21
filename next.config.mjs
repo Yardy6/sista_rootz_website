@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
-const basePath = isGitHubPages ? "/sista_rootz_website" : "";
+const defaultBasePath = isGitHubPages ? "/sista_rootz_website" : "";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? defaultBasePath;
 
 const nextConfig = {
   assetPrefix: basePath,
